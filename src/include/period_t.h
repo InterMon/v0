@@ -6,19 +6,15 @@
  */
 
 
-#ifndef _CNAME_H
-#define _CNAME_H
+#ifndef _PERIOD_T_H
+#define _PERIOD_T_H
 
-#include "InterMon.h"
-#include "Cid.h"
-
-
-class Cname: public Cid {
-public: 
-    std::string name;
+struct period_t {
+    int from;
+    int to;
 };
 
-#endif //_CNAME_H
+#endif //_PERIOD_T_H
 
 /* vim: syntax=cpp:fileencoding=utf-8:fileformat=unix:tw=78:ts=4:sw=4:sts=4:et
  * EOF */

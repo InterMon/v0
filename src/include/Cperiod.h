@@ -6,19 +6,24 @@
  */
 
 
-#ifndef _CID_H
-#define _CID_H
+#ifndef _CPERIOD_H
+#define _CPERIOD_H
 
 #include "InterMon.h"
 #include "Cbasic.h"
+#include "period_t.h"
 
-
-class Cid: public Cbasic {
+class Cperiod: public Cbasic {
 public: 
-    int id;
+    /* */
+    Cperiod();
+    /* */
+    ~Cperiod();
+protected:
+    period_t period;
 };
 
-#endif //_CID_H
+#endif //_CPERIOD_H
 
 /* vim: syntax=cpp:fileencoding=utf-8:fileformat=unix:tw=78:ts=4:sw=4:sts=4:et
  * EOF */

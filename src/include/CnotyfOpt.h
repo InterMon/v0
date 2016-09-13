@@ -5,20 +5,24 @@
  * Project InterMon v0.4
  */
 
-
-#ifndef _CID_H
-#define _CID_H
+#ifndef _CNOTYFOPT_H
+#define _CNOTYFOPT_H
 
 #include "InterMon.h"
 #include "Cbasic.h"
+#include "notify_t.h"
 
-
-class Cid: public Cbasic {
+class CnotyfOpt: public Cbasic {
 public: 
-    int id;
+    /* */
+    CnotyfOpt();
+    /* */
+    ~CnotyfOpt();
+private: 
+    notify_t opt;
 };
 
-#endif //_CID_H
+#endif //_CNOTYFOPT_H
 
 /* vim: syntax=cpp:fileencoding=utf-8:fileformat=unix:tw=78:ts=4:sw=4:sts=4:et
  * EOF */

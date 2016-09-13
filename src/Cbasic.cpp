@@ -1,8 +1,8 @@
 /* $Id$
- * $Version: 0.3$
+ * $Version: 0.4$
  */
 /**
- * Project InterMon v0.3
+ * Project InterMon v0.4
  */
 #include "Cbasic.h"
 
