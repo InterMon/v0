@@ -1,19 +1,23 @@
 /* $Id$
- * $Version: 0.6$
+ * $Version: 0.7$
  */
 /**
- * Project InterMon v0.6
+ * Project InterMon v0.7
  */
 
 
 #include "Chost.h"
 
-Chost::Chost() { }
+Chost::Chost() { /* empty */ }
 
-Chost::~Chost() { }
+Chost::~Chost() { /* empty */ }
 
 void Chost::checkCommand() {
-
+#if defined(DEBUG) && defined(PRINTM)
+    printd("check host: ", hostName) << std::endl;
+#endif
+    // TODO
+    std::cerr << "ping host: " << hostName << std::endl;
 }
 
 void Chost::checkServices() {

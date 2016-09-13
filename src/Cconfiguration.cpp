@@ -1,8 +1,8 @@
 /* $Id$
- * $Version: 0.6$
+ * $Version: 0.7$
  */
 /**
- * Project InterMon v0.6
+ * Project InterMon v0.7
  */
 
 
@@ -10,7 +10,7 @@
 
 const std::string devNull = "/dev/null";
 
-Cconfiguration::Cconfiguration(std::string s = devNull) {
+Cconfiguration::Cconfiguration(std::string s) {
   if (s != devNull) {
 #if defined(DEBUG) && defined(PRINTM)
     printd("Prepare Cconfiguration") << std::endl;
@@ -28,6 +28,7 @@ int Cconfiguration::parse() {
                   << std::endl;
         return 1;
     }
+    // TODO
     /* parsing ... */
     return 0;
 }

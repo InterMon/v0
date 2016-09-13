@@ -1,8 +1,8 @@
 /* $Id$
- * $Version: 0.6$
+ * $Version: 0.7$
  */
 /**
- * Project InterMon v0.6
+ * Project InterMon v0.7
  */
 
 #include "CmainServer.h"
@@ -15,7 +15,6 @@ using namespace std;
 #define MAXLINE 255
 #define __TEST_DEVELOPING__ true
 
-#if defined(__TEST_DEVELOPING__)
 const char * charsTestConf[MAXLINE] = {
     "host", "localhost",
     "ip", "127.0.0.1",
@@ -24,7 +23,6 @@ const char * charsTestConf[MAXLINE] = {
     "type", "8",
     nullptr
 };
-#endif
 
 int main(int argc, char *argv[]) {
 #if defined(DEBUG) && defined(PRINTM)
@@ -41,8 +39,11 @@ int main(int argc, char *argv[]) {
     testConf.parse();
     CmainServer mainServer(charsTestConf);
     mainServer.init();
+    mainServer.run();
 #else
-    CmainServer mainServer;
+    CmainServer mainServer(charsTestConf);
+    mainServer.init();
+    mainServer.run();
 #endif
     return 0;
 }

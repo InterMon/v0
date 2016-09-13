@@ -1,8 +1,8 @@
 /* $Id$
- * $Version: 0.6$
+ * $Version: 0.7$
  */
 /**
- * Project InterMon v0.6
+ * Project InterMon v0.7
  */
 
 
@@ -13,14 +13,14 @@
 #include "Cconfiguration.h"
 #include "Cname.h"
 #include "Chost.h"
+#include <thread>
 
 class CmainServer: public Cname {
 public: 
     /* */
     CmainServer();
     explicit CmainServer(const char ** c)
-    : conf(c)
-    { }
+    : conf(c) { /* empty*/ }
     /* */
     ~CmainServer();
     /* */
@@ -30,11 +30,12 @@ public:
     /* */
     void run();
     /* */
-    void eventLoop();
+    void eventLoop(Chost & host);
 private: 
     Cconfiguration conf;
     std::string ipAddress;
     std::vector<Chost> hosts;
+    std::vector<std::thread*> _threads;
 };
 
 #endif //_CMAINSERVER_H

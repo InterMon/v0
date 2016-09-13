@@ -1,8 +1,8 @@
 /* $Id$
- * $Version: 0.6$
+ * $Version: 0.7$
  */
 /**
- * Project InterMon v0.6
+ * Project InterMon v0.7
  */
 
 #ifndef _CSERVICE_H
@@ -20,9 +20,9 @@ public:
     /* */
     virtual ~Cservice();
     /* */
-    virtual void checkCommand() { };
+    virtual void checkCommand() { /* empty */ };
     /* */
-    virtual void notifyCommand() { };
+    virtual void notifyCommand() { /* empty */ };
 protected: 
     std::string description;
 };

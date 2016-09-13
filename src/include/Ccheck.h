@@ -1,8 +1,8 @@
 /* $Id$
- * $Version: 0.6$
+ * $Version: 0.7$
  */
 /**
- * Project InterMon v0.6
+ * Project InterMon v0.7
  */
 
 
@@ -18,12 +18,13 @@ public:
     Ccheck();
     virtual ~Ccheck() = 0;
     virtual void checkCommand() = 0;
+    virtual int getCheckInterval() { return normalCheckInterval; }
 protected:
-    int state;
+    int state = 0;
     Cperiod checkPeriod;
-    int normalCheckInterval;
-    int maxCheckAttempts;
-    int retryInterval;
+    int normalCheckInterval = 5;
+    int maxCheckAttempts = 2;
+    int retryInterval = 2;
 };
 
 #endif //_CCHECK_H

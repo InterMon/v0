@@ -1,1 +1,5 @@
-This project build and tested on Debian/GNU Linux with gcc (Debian 4.9.2-10) 4.9.2 and GNU Make 4.0
+This project build and tested on:
+ 1) Debian/GNU Linux with gcc (Debian 4.9.2-10) 4.9.2 and GNU Make 4.0
+ 2) Apple LLVM version 7.0.2 (clang-700.1.81)
+ 3) FreeBSD 9.3-RELEASE g++49 (FreeBSD Ports Collection) 4.9.4
+    CC=gcc49 CXX=c++49 gmake 

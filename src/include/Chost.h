@@ -1,8 +1,8 @@
 /* $Id$
- * $Version: 0.6$
+ * $Version: 0.7$
  */
 /**
- * Project InterMon v0.6
+ * Project InterMon v0.7
  */
 
 #ifndef _CHOST_H
@@ -21,7 +21,7 @@ public:
     /* */
     Chost();
     Chost(const std::string name)
-    : hostName(name) { }
+    : hostName(name) { /* empty */ }
     /* */
     ~Chost();
     /* */

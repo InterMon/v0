@@ -1,8 +1,8 @@
 /* $Id$
- * $Version: 0.6$
+ * $Version: 0.7$
  */
 /**
- * Project InterMon v0.6
+ * Project InterMon v0.7
  */
 
 #ifndef _CCONFIGURATION_H
@@ -12,9 +12,11 @@
 #include "Cname.h"
 #include <fstream>      // std::ifstream
 
+extern const std::string devNull;
+
 class Cconfiguration: public Cname {
 public:
-    Cconfiguration(std::string);
+    Cconfiguration(std::string s = devNull);
     explicit Cconfiguration(const char ** c) {
         char ** p = const_cast<char **>(c);
         for (; *p != nullptr; ++p) {
@@ -30,8 +32,6 @@ private:
     std::ifstream inFile;
     std::vector<std::string> _config;
 };
-
-extern const std::string devNull;
 
 #endif //_CCONFIGURATION_H
 
