@@ -1,8 +1,8 @@
 /* $Id$
- * $Version: 0.5$
+ * $Version: 0.6$
  */
 /**
- * Project InterMon v0.5
+ * Project InterMon v0.6
  */
 
 #ifndef _CCONFIGURATION_H
@@ -15,11 +15,23 @@
 class Cconfiguration: public Cname {
 public:
     Cconfiguration(std::string);
+    explicit Cconfiguration(const char ** c) {
+        char ** p = const_cast<char **>(c);
+        for (; *p != nullptr; ++p) {
+            _config.push_back(*p);
+        }
+    }
     ~Cconfiguration();
     int parse();
+    const std::vector<std::string> & config() {
+        return _config;
+    }
 private:
     std::ifstream inFile;
+    std::vector<std::string> _config;
 };
+
+extern const std::string devNull;
 
 #endif //_CCONFIGURATION_H
 

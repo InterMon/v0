@@ -6,15 +6,11 @@
  */
 
 
-#ifndef _PERIOD_T_H
-#define _PERIOD_T_H
+#include "Cnotification.h"
 
-struct period_t {
-    int from;
-    int to;
-};
+Cnotification::Cnotification() { }
 
-#endif //_PERIOD_T_H
+Cnotification::~Cnotification() { }
 
 /* vim: syntax=cpp:fileencoding=utf-8:fileformat=unix:tw=78:ts=4:sw=4:sts=4:et
  * EOF */

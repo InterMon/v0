@@ -6,15 +6,18 @@
  */
 
 
-#ifndef _PERIOD_T_H
-#define _PERIOD_T_H
+#ifndef _CIPADDRESS_H
+#define _CIPADDRESS_H
 
-struct period_t {
-    int from;
-    int to;
+class CipAddress {
+public: 
+    /* */
+    CipAddress();
+    /* */
+    ~CipAddress();
 };
 
-#endif //_PERIOD_T_H
+#endif //_CIPADDRESS_H
 
 /* vim: syntax=cpp:fileencoding=utf-8:fileformat=unix:tw=78:ts=4:sw=4:sts=4:et
  * EOF */

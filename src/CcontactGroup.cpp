@@ -6,15 +6,14 @@
  */
 
 
-#ifndef _PERIOD_T_H
-#define _PERIOD_T_H
+#include "CcontactGroup.h"
 
-struct period_t {
-    int from;
-    int to;
-};
+CcontactGroup::CcontactGroup() { }
 
-#endif //_PERIOD_T_H
+CcontactGroup::~CcontactGroup() { }
+
+void CcontactGroup::notifyMethod() {
+}
 
 /* vim: syntax=cpp:fileencoding=utf-8:fileformat=unix:tw=78:ts=4:sw=4:sts=4:et
  * EOF */
