@@ -1,0 +1,11 @@
+*.c ident
+*.cc ident
+*.cpp ident
+*.cxx ident
+*.h ident
+*.hh ident
+*.hpp ident
+*.hxx ident
+*.txt ident
+GNUMakefile ident
+Makefile ident

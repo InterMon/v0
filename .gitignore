@@ -1,0 +1,30 @@
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Libraries
+*.lib
+*.a
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.map
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+*.dSYM
+*.pyc
+*.ycm_extra_conf.py
+
+build/*
+tmp/*
