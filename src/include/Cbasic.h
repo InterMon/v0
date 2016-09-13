@@ -1,8 +1,8 @@
 /* $Id$
- * $Version: 0.1$
+ * $Version: 0.2$
  */
 /**
- * Project InterMon v0.1
+ * Project InterMon v0.2
  */
 
 
