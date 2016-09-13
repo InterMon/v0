@@ -1,14 +1,20 @@
 /* $Id$
- * $Version: 0.4$
+ * $Version: 0.5$
  */
 /**
- * Project InterMon v0.4
+ * Project InterMon v0.5
  */
 
 
 #include "Cconfiguration.h"
 
-Cconfiguration::Cconfiguration() { }
+const std::string devNull = "/dev/null";
+
+Cconfiguration::Cconfiguration(std::string s = "/dev/null") {
+  if (s != devNull) {
+    std::cerr << "Prepare Cconfiguration" << std::endl;
+  }
+}
 
 Cconfiguration::~Cconfiguration() { }
 

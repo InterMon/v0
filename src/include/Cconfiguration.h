@@ -1,8 +1,8 @@
 /* $Id$
- * $Version: 0.4$
+ * $Version: 0.5$
  */
 /**
- * Project InterMon v0.4
+ * Project InterMon v0.5
  */
 
 #ifndef _CCONFIGURATION_H
@@ -14,7 +14,7 @@
 
 class Cconfiguration: public Cname {
 public:
-    Cconfiguration();
+    Cconfiguration(std::string);
     ~Cconfiguration();
     int parse();
 private:
