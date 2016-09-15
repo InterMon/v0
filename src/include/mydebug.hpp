@@ -1,6 +1,6 @@
 /* $Id$
- * $Version: 0.7$
- * $Revision: 6$
+ * $Version: 0.7.1$
+ * $Revision: 7$
  */
 
 #pragma once

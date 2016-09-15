@@ -1,13 +1,14 @@
 /* $Id$
- * $Version: 0.7$
- * $Revision: 6$
+ * $Version: 0.7.1$
+ * $Revision: 7$
  */
 /**
- * Project InterMon v0.7
+ * Project InterMon v0.7.1
  */
 
-
 #include "Chost.h"
+
+using namespace std;
 
 Chost::Chost() { /* empty */ }
 
@@ -15,10 +16,11 @@ Chost::~Chost() { /* empty */ }
 
 void Chost::checkCommand() {
 #if defined(DEBUG) && defined(PRINTM)
-    printd("check host: ", hostName) << std::endl;
+    printd("check host: ", hostName) << endl;
 #endif
     // TODO
-    std::cerr << "ping host: " << hostName << std::endl;
+    cerr << "ping host: " << hostName << " this: " << this << endl;
+    mdb.setHostStatus(hostName, 0);
 }
 
 void Chost::checkServices() {

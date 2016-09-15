@@ -1,9 +1,9 @@
 /* $Id$
- * $Version: 0.7$
- * $Revision: 6$
+ * $Version: 0.7.1$
+ * $Revision: 7$
  */
 /**
- * Project InterMon v0.7
+ * Project InterMon v0.7.1
  */
 
 #ifndef _CHOST_H
@@ -12,10 +12,12 @@
 #include "InterMon.h"
 #include "Cname.h"
 #include "Ccheck.h"
+#include "Cdb.h"
 #include "CipAddress.h"
 #include "Cipv4Address.h"
 #include "Cnotification.h"
 #include "Cservice.h"
+#include "sqlite_modern_cpp.h"
 
 class Chost: public Ccheck, public Cnotification {
 public: 
@@ -31,6 +33,8 @@ public:
     void checkServices();
     /* */
     void notifyCommand();
+    /* */
+    const std::string & getHostname() { return hostName; };
 private: 
     std::string hostName;
     CipAddress ipAddress;

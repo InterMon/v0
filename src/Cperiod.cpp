@@ -1,9 +1,9 @@
 /* $Id$
- * $Version: 0.7$
- * $Revision: 6$
+ * $Version: 0.7.1$
+ * $Revision: 7$
  */
 /**
- * Project InterMon v0.7
+ * Project InterMon v0.7.1
  */
 
 #include "Cperiod.h"

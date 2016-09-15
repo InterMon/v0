@@ -1,16 +1,18 @@
 /* $Id$
- * $Version: 0.7$
- * $Revision: 4$
+ * $Version: 0.7.1$
+ * $Revision: 5$
  */
 /**
- * Project InterMon v0.7
+ * Project InterMon v0.7.1
  */
 
 #include "CmainServer.h"
 #include "Cname.h"
 #include "Cconfiguration.h"
 #include "CserviceICMP.h"
+#include "sqlite_modern_cpp.h"
 
+using namespace sqlite;
 using namespace std;
 
 #define MAXLINE 255
@@ -22,6 +24,10 @@ const char * charsTestConf[MAXLINE] = {
     "",
     "service", "icmp"
     "type", "8",
+    "",
+    "host", "host1",
+    "ip", "1.1.1.1",
+    "",
     nullptr
 };
 

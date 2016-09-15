@@ -1,11 +1,10 @@
 /* $Id$
- * $Version: 0.7$
- * $Revision: 2$
+ * $Version: 0.7.1$
+ * $Revision: 3$
  */
 /**
- * Project InterMon v0.7
+ * Project InterMon v0.7.1
  */
-
 
 #include "Ccheck.h"
 

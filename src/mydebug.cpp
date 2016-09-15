@@ -1,6 +1,6 @@
 /* $Id$
- * $Version: 0.7$
- * $Revision: 5$
+ * $Version: 0.7.1$
+ * $Revision: 6$
  */
 
 #include "mydebug.hpp"

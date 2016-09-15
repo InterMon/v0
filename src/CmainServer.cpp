@@ -1,9 +1,9 @@
 /* $Id$
- * $Version: 0.7$
- * $Revision: 6$
+ * $Version: 0.7.1$
+ * $Revision: 7$
  */
 /**
- * Project InterMon v0.7
+ * Project InterMon v0.7.1
  */
 
 extern "C" {
@@ -11,12 +11,14 @@ extern "C" {
 }
 #include "CmainServer.h"
 
-typedef std::vector<Chost>::const_iterator hIter;
-typedef std::vector<std::string>::const_iterator cIter;
-typedef std::vector<std::thread*>::iterator tIter;
+using namespace std;
 
-const std::string localhost = "127.0.0.1";
-const std::string defaultConfigFile = "/usr/local/etc/intermon/intermon.conf";
+typedef vector<Chost*>::iterator hIter;
+typedef vector<string>::const_iterator cIter;
+typedef vector<thread*>::iterator tIter;
+
+const string localhost = "127.0.0.1";
+const string defaultConfigFile = "/usr/local/etc/intermon/intermon.conf";
 
 CmainServer::CmainServer()
 : conf(defaultConfigFile), ipAddress(localhost)
@@ -26,19 +28,30 @@ CmainServer::~CmainServer() {
     for (tIter i = _threads.begin(); i != _threads.end(); ++i) {
         delete *i;
     }
+    for (hIter i = hosts.begin(); i != hosts.end(); ++i) {
+        delete *i;
+    }
 }
 
 void CmainServer::init() {
-    const std::vector<std::string> c = conf.config();
+    const vector<string> c = conf.config();
     for (cIter i = c.begin(); i != c.end(); ++i) {
         if (*i == "host") {
             i++;
             if (i != c.end()) {
-                hosts.push_back(*i);
+                hosts.push_back(new Chost(*i));
+                mdb.addHost(*i);
             } else {
-                std::cerr << "Syntax error!" << std::endl;
+                cerr << "Syntax error!" << endl;
             }
         }
+    }
+    for (size_t i = 0; i < hosts.size(); ++i) {
+        cerr << "Hostname: "
+             << hosts[i]->getHostname()
+             << "&host[" << i << "]: "
+             << &hosts[i]
+             << endl;
     }
 }
 
@@ -46,16 +59,29 @@ void CmainServer::readConf() {
     // TODO
 }
 
-void eventLoop0(Chost host) {
+void eventLoop0(Chost * host) {
     while (true) {
-        host.checkCommand();
-        myusleep(host.getCheckInterval()*1000000);
+        const string & hostName = host->getHostname();
+        mdb.setHostStatus(hostName, 1);
+        myusleep(host->getCheckInterval()*1000000/2);
+        cerr << "setHostStatus("
+             << hostName << ", "
+             << mdb.getHostStatus(hostName)
+             << ")" << endl;
+        host->checkCommand();
+        myusleep(host->getCheckInterval()*1000000/2);
+        cerr << "getHostStatus("
+             << hostName << ") => "
+             << mdb.getHostStatus(hostName)
+             << endl;
     }
 }
 
 void CmainServer::run() {
     for (hIter i = hosts.begin(); i != hosts.end(); ++i) {
-        _threads.push_back(new std::thread(eventLoop0, *i));
+        Chost * host = *i;
+        _threads.push_back(new thread(eventLoop0, host));
+        myusleep(1000000/2);
     }
     while (true) {
         myusleep(1000);

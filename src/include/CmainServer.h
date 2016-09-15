@@ -1,9 +1,9 @@
 /* $Id$
- * $Version: 0.7$
- * $Revision: 6$
+ * $Version: 0.7.1$
+ * $Revision: 7$
  */
 /**
- * Project InterMon v0.7
+ * Project InterMon v0.7.1
  */
 
 
@@ -35,8 +35,9 @@ public:
 private: 
     Cconfiguration conf;
     std::string ipAddress;
-    std::vector<Chost> hosts;
+    std::vector<Chost*> hosts;
     std::vector<std::thread*> _threads;
+    friend void eventLoop0(Chost *);
 };
 
 #endif //_CMAINSERVER_H
