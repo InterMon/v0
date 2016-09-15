@@ -1,11 +1,12 @@
 /* $Id$
  * $Version: 0.7.1$
- * $Revision: 7$
+ * $Revision: 8$
  */
 /**
  * Project InterMon v0.7.1
  */
 
+#define _MODERN_SQLITE_BOOST_OPTIONAL_SUPPORT
 #include "Cdb.h"
 
 using namespace sqlite;

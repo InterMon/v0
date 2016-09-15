@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 0.7.1$
- * $Revision: 7$
+ * $Revision: 8$
  */
 /**
  * Project InterMon v0.7.1
@@ -17,7 +17,6 @@
 #include "Cipv4Address.h"
 #include "Cnotification.h"
 #include "Cservice.h"
-#include "sqlite_modern_cpp.h"
 
 class Chost: public Ccheck, public Cnotification {
 public: 

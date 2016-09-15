@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 0.7.1$
- * $Revision: 5$
+ * $Revision: 6$
  */
 /**
  * Project InterMon v0.7.1
@@ -10,7 +10,6 @@
 #include "Cname.h"
 #include "Cconfiguration.h"
 #include "CserviceICMP.h"
-#include "sqlite_modern_cpp.h"
 
 using namespace sqlite;
 using namespace std;
