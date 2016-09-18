@@ -11,6 +11,7 @@
 
 #include "InterMon.h"
 #include "Cname.h"
+#include "tinyxml.h"
 #include <fstream>      // std::ifstream
 
 extern const std::string devNull;
@@ -30,7 +31,7 @@ public:
         return _config;
     }
 private:
-    std::ifstream inFile;
+    TiXmlDocument cfgxml;
     std::vector<std::string> _config;
 };
 

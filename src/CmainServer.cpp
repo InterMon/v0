@@ -11,6 +11,7 @@ extern "C" {
 }
 #include "Cdb.h"
 #include "CmainServer.h"
+#include "Cconfiguration.h"
 
 using namespace std;
 
@@ -39,6 +40,7 @@ CmainServer::~CmainServer() {
 }
 
 void CmainServer::init() {
+    readConf();
     const vector<string> c = conf.config();
     for (cIter i = c.begin(); i != c.end(); ++i) {
         if (*i == "host") {
@@ -58,10 +60,6 @@ void CmainServer::init() {
              << &hosts[i]
              << endl;
     }
-}
-
-void CmainServer::readConf() {
-    // TODO
 }
 
 void eventLoop0(Chost * host) {
@@ -100,6 +98,9 @@ void CmainServer::run() {
             mdb.backup(); 
         } catch (std::runtime_error& e) {
             cerr << e.what() << endl;
+#if defined(DEBUG) && defined(PRINTM)
+            printd("Error: ", e.what()) << endl;
+#endif
         }
     }
 }

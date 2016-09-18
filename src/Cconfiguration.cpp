@@ -7,34 +7,13 @@
  */
 
 #include "Cconfiguration.h"
-#include "tinyxml.h"
 
 const std::string devNull = "/dev/null";
+const char chost[] = "host";
+const char cip[] = "ip";
 
-Cconfiguration::Cconfiguration(const std::string & s) {
-  if (s != devNull) {
-#if defined(DEBUG) && defined(PRINTM)
-    printd("Prepare Cconfiguration") << std::endl;
-#endif
-    TiXmlDocument cfg(s.c_str());
-    
-    if(!cfg.LoadFile()) {
-        std::cout << "file " << cfg.Value() << " have any errors" << std::endl;
-        return;
-    }
-    TiXmlElement *xml1 = 0;
-    xml1 = cfg.FirstChildElement();
-    TiXmlElement *xml2 = 0;
-    xml2 = xml1->FirstChildElement("host");
-    while(xml2 != nullptr) {
-        const char * name = xml2->Attribute("name");
-        std::cout << name << std::endl;
-        _config.push_back("host");
-        _config.push_back(name);
-        xml2 = xml2->NextSiblingElement("host");
-    }
-  }
-}
+Cconfiguration::Cconfiguration(const std::string & s)
+: cfgxml(s.c_str()) { }
 
 Cconfiguration::~Cconfiguration() { }
 
@@ -46,8 +25,40 @@ int Cconfiguration::parse() {
                   << std::endl;
         return 1;
     }
-    // TODO
-    /* parsing ... */
+#if defined(DEBUG) && defined(PRINTM)
+    printd("Prepare Cconfiguration") << std::endl;
+#endif
+    if(!cfgxml.LoadFile()) {
+        std::cout << "file "
+                  << cfgxml.Value()
+                  << " have any errors"
+                  << std::endl;
+        return 2;
+    }
+    TiXmlElement *xml1 = 0;
+    xml1 = cfgxml.FirstChildElement();
+    TiXmlElement *xml2 = 0;
+    xml2 = xml1->FirstChildElement(chost);
+    while(nullptr != xml2) {
+        const char * name = xml2->Attribute("name");
+        if (nullptr != name) {
+            _config.push_back(chost);
+            _config.push_back(name);
+            const char * ip = xml2->Attribute(cip);
+            if (nullptr != ip) {
+                _config.push_back(cip);
+                _config.push_back(ip);
+                std::cout << "Added host: " << name
+                          << " ip: " << ip
+                          << std::endl;
+            } else {
+                std::cout << "Added host: " << name
+                          << " UNKNOW ip!!!" << std::endl;
+            }
+        }
+        _config.push_back("");
+        xml2 = xml2->NextSiblingElement(chost);
+    }
     return 0;
 }
 

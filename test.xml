@@ -4,4 +4,7 @@
       <service name="icmp" type=8 />
     </host>
     <host name="host1" ip="1.1.1.1" />
+    <host name="host2" />
+    <host ip="255.255.255.255" />
+    <host />
 </config>

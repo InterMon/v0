@@ -30,7 +30,7 @@ public:
     /* */
     void init();
     /* */
-    void readConf();
+    void readConf() { conf.parse(); }
     /* */
     void run();
     /* */

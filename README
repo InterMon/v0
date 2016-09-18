@@ -12,3 +12,9 @@ build and tested on:
     libboost1.55-dev:amd64 1.55.0+dfsg-3
  2) Apple LLVM version 8.0.0 (clang-800.0.38)
     MacPorts boost @1.59.0_2+no_single+no_static+openmpi+python27+regex_match_extra
+
+Integrate https://sourceforge.net/projects/tinyxml/ ,
+build and tested on:
+ 1) Debian/GNU Linux with gcc (Debian 4.9.2-10) 4.9.2 and GNU Make 4.0
+ 2) Apple LLVM version 8.0.0 (clang-800.0.38)
+ 3) MacPorts gcc6 6.1.0_0
