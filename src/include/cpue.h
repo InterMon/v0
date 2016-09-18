@@ -11,7 +11,7 @@
 #define MYUSLEEP_1SEC 1000000
 #define MYUSLEEP_3SEC 3000000
 
-Int fd_pipepair(int fd[2]);
+int fd_pipepair(int fd[2]);
 int myusleep(long usec);
 int set_nonblock(int fd);
 

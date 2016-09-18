@@ -1,9 +1,9 @@
 /* $Id$
- * $Version: 0.7.1$
+ * $Version: 0.7.2$
  * $Revision: 6$
  */
 /**
- * Project InterMon v0.7.1
+ * Project InterMon v0.7.2
  */
 
 #include "CmainServer.h"
@@ -18,14 +18,14 @@ using namespace std;
 #define __TEST_DEVELOPING__ true
 
 const char * charsTestConf[MAXLINE] = {
-    "host", "localhost",
-    "ip", "127.0.0.1",
+    "host", "name0",
+    "ip", "0.0.0.0",
     "",
     "service", "icmp"
     "type", "8",
     "",
-    "host", "host1",
-    "ip", "1.1.1.1",
+    "host", "host2",
+    "ip", "2.2.2.2",
     "",
     nullptr
 };
@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
     Cconfiguration zeroConf("/dev/zero");
     Cconfiguration testConf(charsTestConf);
     testConf.parse();
-    CmainServer mainServer(charsTestConf);
+    CmainServer mainServer("test.xml");
     mainServer.init();
     mainServer.run();
 #else

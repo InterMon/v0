@@ -1,9 +1,9 @@
 /* $Id$
- * $Version: 0.7.1$
+ * $Version: 0.7.2$
  * $Revision: 11$
  */
 /**
- * Project InterMon v0.7.1
+ * Project InterMon v0.7.2
  */
 
 #include "Chost.h"

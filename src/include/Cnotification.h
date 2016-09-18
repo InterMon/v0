@@ -1,9 +1,9 @@
 /* $Id$
- * $Version: 0.7.1$
+ * $Version: 0.7.2$
  * $Revision: 7$
  */
 /**
- * Project InterMon v0.7.1
+ * Project InterMon v0.7.2
  */
 
 #ifndef _CNOTIFICATION_H

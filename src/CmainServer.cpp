@@ -1,9 +1,9 @@
 /* $Id$
- * $Version: 0.7.1$
+ * $Version: 0.7.2$
  * $Revision: 11$
  */
 /**
- * Project InterMon v0.7.1
+ * Project InterMon v0.7.2
  */
 
 extern "C" {
@@ -19,10 +19,14 @@ typedef vector<string>::const_iterator cIter;
 typedef vector<thread*>::iterator tIter;
 
 const string localhost = "127.0.0.1";
-const string defaultConfigFile = "/usr/local/etc/intermon/intermon.conf";
+const string defaultConfigFile = "intermon.conf.xml";
 
 CmainServer::CmainServer()
 : conf(defaultConfigFile), ipAddress(localhost)
+{ /* empty */ }
+
+CmainServer::CmainServer(const std::string & configFile)
+: conf(configFile), ipAddress(localhost)
 { /* empty */ }
 
 CmainServer::~CmainServer() {

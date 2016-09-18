@@ -1,9 +1,9 @@
 /* $Id$
- * $Version: 0.7.1$
+ * $Version: 0.7.2$
  * $Revision: 7$
  */
 /**
- * Project InterMon v0.7.1
+ * Project InterMon v0.7.2
  */
 
 #ifndef _CCONFIGURATION_H
@@ -17,7 +17,7 @@ extern const std::string devNull;
 
 class Cconfiguration: public Cname {
 public:
-    Cconfiguration(std::string s = devNull);
+    Cconfiguration(const std::string & s = devNull);
     explicit Cconfiguration(const char ** c) {
         char ** p = const_cast<char **>(c);
         for (; *p != nullptr; ++p) {
