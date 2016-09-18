@@ -1,7 +1,7 @@
 
 This project build and tested on:
  1) Debian/GNU Linux with gcc (Debian 4.9.2-10) 4.9.2 and GNU Make 4.0
- 2) Apple LLVM version 7.0.2 (clang-700.1.81)
+ 2) Apple LLVM version 8.0.0 (clang-800.0.38)
  3) FreeBSD 9.3-RELEASE g++49 (FreeBSD Ports Collection) 4.9.4
     CC=gcc49 CXX=c++49 gmake
 
@@ -10,5 +10,5 @@ This project (with define _MODERN_SQLITE_BOOST_OPTIONAL_SUPPORT)
 build and tested on:
  1) Debian/GNU Linux with gcc (Debian 4.9.2-10) 4.9.2 and GNU Make 4.0
     libboost1.55-dev:amd64 1.55.0+dfsg-3
- 2) Apple LLVM version 7.0.2 (clang-700.1.81)
+ 2) Apple LLVM version 8.0.0 (clang-800.0.38)
     MacPorts boost @1.59.0_2+no_single+no_static+openmpi+python27+regex_match_extra
