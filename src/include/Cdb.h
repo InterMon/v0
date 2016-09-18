@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 0.7.1$
- * $Revision: 10$
+ * $Revision: 14$
  */
 /**
  * Project InterMon v0.7.1
@@ -25,6 +25,8 @@ public:
     Cdb();
     /* */
     ~Cdb();
+    /* */
+    void backup(const std::string & name = "sqlite3.db") throw(std::runtime_error);
     /* */
     void addHost(const std::string & name);
     /* */

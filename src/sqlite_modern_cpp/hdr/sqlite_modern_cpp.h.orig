@@ -12,7 +12,6 @@
 #include <boost/optional.hpp>
 #endif
 
-#include <backupDb.h>
 #include <sqlite3.h>
 
 #include <sqlite_modern_cpp/utility/function_traits.h>
@@ -292,8 +291,8 @@ namespace sqlite {
 
 	class database {
 	private:
-        friend int backupDb(database * db, const char *zFilename, void(*xProgress)(int, int));
 		std::shared_ptr<sqlite3> _db;
+
 	public:
 		database(std::u16string const & db_name): _db(nullptr) {
 			sqlite3* tmp = nullptr;
@@ -578,6 +577,5 @@ namespace sqlite {
 
 	// Convert the rValue binder to a reference and call first op<<, its needed for the call that creates the binder (be carfull of recursion here!)
 	template<typename T> database_binder& operator << (database_binder&& db, const T& val) { return db << val; }
-
 
 }

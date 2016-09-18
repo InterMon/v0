@@ -24,6 +24,11 @@
 *.hex
 *.dSYM
 *.pyc
+
+# SQLite database
+*.db
+
+# YCM
 *.ycm_extra_conf.py
 
 build/*

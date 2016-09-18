@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 0.7.1$
- * $Revision: 8$
+ * $Revision: 12$
  */
 /**
  * Project InterMon v0.7.1
@@ -8,6 +8,8 @@
 
 #define _MODERN_SQLITE_BOOST_OPTIONAL_SUPPORT
 #include "Cdb.h"
+#include "backupDb.h"
+#include <stdexcept>
 
 using namespace sqlite;
 using namespace std;
@@ -19,16 +21,33 @@ Cdb::Cdb() {
           " , state INTEGER state );";
 }
 
-Cdb::~Cdb() { /* empty */ }
+Cdb::~Cdb() {
+    sqlite::backupDb(&this->db, "sqlite3.db", NULL);
+}
 
-void Cdb::addHost(const std::string & name) {
-    try {
-        db << "INSERT INTO hosts (name) VALUES (?)"
-           << name;
+void Cdb::backup(const std::string & name) throw(std::runtime_error) {
+#if defined(DEBUG) && defined(PRINTM)
+    printd("running...") << endl;
+#endif
+    int rc = 0;
+    if (0 == (rc = sqlite::backupDb(&this->db, name.c_str(), NULL))) {
+#if defined(DEBUG) && defined(PRINTM)
+        printd("Ok! rc: ", rc) << endl;
+#endif
+    } else {
+#if defined(DEBUG) && defined(PRINTM)
+        printd("Error in backup rc: ", rc) << endl;
+#endif
+        throw std::runtime_error("Error in backup");
     }
-    catch (sqlite_exception& e) {
-        cerr << e.what() << endl;
-    }
+}
+
+void Cdb::addHost(const std::string & name) try {
+    db << "INSERT INTO hosts (name) VALUES (?)"
+       << name;
+}
+catch (sqlite_exception& e) {
+    cerr << e.what() << endl;
 }
 
 int Cdb::getHostStatus(const std::string & name) {
@@ -38,9 +57,12 @@ int Cdb::getHostStatus(const std::string & name) {
     return result;
 }
 
-void Cdb::setHostStatus(const std::string & name, int status) {
+void Cdb::setHostStatus(const std::string & name, int status) try {
     db << "UPDATE hosts SET state = ? WHERE name = ?"
        << status << name;
+}
+catch (sqlite_exception& e) {
+    cerr << e.what() << endl;
 }
 
 Cdb mdb;

@@ -12,6 +12,7 @@ DEPS := $(OBJS:.o=.d)
 
 INC_DIRS := $(shell find $(SRC_DIRS) -type d)
 INC_FLAGS := $(addprefix -I,$(INC_DIRS))
+INC_FLAGS += -I/opt/local/include
 
 LDFLAGS ?= -lpthread -ldl
 CPPFLAGS ?= $(INC_FLAGS) -MMD -MP

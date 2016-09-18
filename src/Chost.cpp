@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 0.7.1$
- * $Revision: 7$
+ * $Revision: 11$
  */
 /**
  * Project InterMon v0.7.1
@@ -19,8 +19,10 @@ void Chost::checkCommand() {
     printd("check host: ", hostName) << endl;
 #endif
     // TODO
-    cerr << "ping host: " << hostName << " this: " << this << endl;
     mdb.setHostStatus(hostName, 0);
+#if defined(DEBUG) && defined(PRINTM)
+    printd(" ping host: ", hostName, " this: ", this) << endl;
+#endif
 }
 
 void Chost::checkServices() {

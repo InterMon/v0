@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 0.7.1$
- * $Revision: 7$
+ * $Revision: 11$
  */
 /**
  * Project InterMon v0.7.1
@@ -9,6 +9,7 @@
 extern "C" {
 #include "cpue.h"
 }
+#include "Cdb.h"
 #include "CmainServer.h"
 
 using namespace std;
@@ -69,7 +70,7 @@ void eventLoop0(Chost * host) {
              << mdb.getHostStatus(hostName)
              << ")" << endl;
         host->checkCommand();
-        myusleep(host->getCheckInterval()*1000000/2);
+        myusleep(host->getCheckInterval()*MYUSLEEP_1SEC/2);
         cerr << "getHostStatus("
              << hostName << ") => "
              << mdb.getHostStatus(hostName)
@@ -81,11 +82,21 @@ void CmainServer::run() {
     for (hIter i = hosts.begin(); i != hosts.end(); ++i) {
         Chost * host = *i;
         _threads.push_back(new thread(eventLoop0, host));
-        myusleep(1000000/2);
+        myusleep(MYUSLEEP_1SEC/2);
     }
     while (true) {
-        myusleep(1000);
-        // TODO
+#if defined(DEBUG) && defined(PRINTM)
+        printd("run sleep!") << endl;
+#endif
+        myusleep(MYUSLEEP_3SEC);
+#if defined(DEBUG) && defined(PRINTM)
+        printd("mdb.") << endl;
+#endif
+        try { 
+            mdb.backup(); 
+        } catch (std::runtime_error& e) {
+            cerr << e.what() << endl;
+        }
     }
 }
 
