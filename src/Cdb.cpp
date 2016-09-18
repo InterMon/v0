@@ -27,7 +27,7 @@ Cdb::~Cdb() {
 
 void Cdb::backup(const std::string & name) throw(std::runtime_error) {
 #if defined(DEBUG) && defined(PRINTM)
-    printd("running...") << endl;
+    cerr << "running..." << endl;
 #endif
     int rc = 0;
     if (0 == (rc = sqlite::backupDb(&this->db, name.c_str(), NULL))) {

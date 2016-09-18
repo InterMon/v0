@@ -92,7 +92,7 @@ void CmainServer::run() {
 #endif
         myusleep(MYUSLEEP_3SEC);
 #if defined(DEBUG) && defined(PRINTM)
-        printd("mdb.") << endl;
+        printd("mdb.backup(): ");
 #endif
         try { 
             mdb.backup(); 
