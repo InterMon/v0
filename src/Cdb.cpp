@@ -1,9 +1,9 @@
 /* $Id$
- * $Version: 0.7.2$
- * $Revision: 12$
+ * $Version: 7.3.0$
+ * $Revision: 13$
  */
 /**
- * Project InterMon v0.7.2
+ * Project InterMon v0.7.3
  */
 
 #define _MODERN_SQLITE_BOOST_OPTIONAL_SUPPORT
