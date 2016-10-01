@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 7.3.0$
- * $Revision: 2$
+ * $Revision: 3$
  */
 /**
  * Project InterMon v0.7.3
@@ -11,9 +11,8 @@
 #define CBUILDER_H
 #include "Abuilder.h"
 #include "Aservice.h"
-#include "Chost.h"
-#include "tinyxml.h"
 #include "CctreatorServiceICMP.h"
+#include "tinyxml.h"
 #include <string>
 
 /**

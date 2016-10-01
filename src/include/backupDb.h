@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 7.3.0$
- * $Revision: 5$
+ * $Revision: 8$
  */
 /**
  * Project InterMon v0.7.3
@@ -14,9 +14,9 @@
 
 
 namespace sqlite {
-class database;
-extern int
-backupDb(database * db, const char *zFilename, void(*xProgress)(int, int));
+    class database;
+    extern int
+    backupDb(database * db, const char *zFilename, void(*xProgress)(int, int));
 }
 
 #endif //_BACKUPDB_H

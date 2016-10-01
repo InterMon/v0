@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 7.3.0$
- * $Revision: 1$
+ * $Revision: 4$
  */
 /**
  * Project InterMon v0.7.3
@@ -20,11 +20,11 @@
 
 class Acreator {
 public:
+  // Constructors
+  Acreator() = default;
   /**
-   * Constructor
    * @param xml - Pointer to XML Element
    */
-  Acreator() { /* Empty */ }
   Acreator(TiXmlElement * xml) { /* Empty */ }
 
   // Destructor

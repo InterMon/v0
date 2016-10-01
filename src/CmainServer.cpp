@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 7.3.0$
- * $Revision: 13$
+ * $Revision: 15$
  */
 /**
  * Project InterMon v0.7.3
@@ -41,18 +41,6 @@ CmainServer::~CmainServer() {
 
 void CmainServer::init() {
     readConf();
-    const vector<string> c = conf.config();
-    for (cIter i = c.begin(); i != c.end(); ++i) {
-        if (*i == "host") {
-            i++;
-            if (i != c.end()) {
-                hosts.push_back(new Chost(*i));
-                mdb.addHost(*i);
-            } else {
-                cerr << "Syntax error!" << endl;
-            }
-        }
-    }
     for (size_t i = 0; i < hosts.size(); ++i) {
         cerr << "Hostname: "
              << hosts[i]->getHostname()
@@ -66,7 +54,7 @@ void eventLoop0(Chost * host) {
     while (true) {
         const string & hostName = host->getHostname();
         mdb.setHostStatus(hostName, 1);
-        myusleep(host->getCheckInterval()*1000000/2);
+        myusleep(host->getCheckInterval()*MYUSLEEP_1SEC/2);
         cerr << "setHostStatus("
              << hostName << ", "
              << mdb.getHostStatus(hostName)

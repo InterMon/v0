@@ -1,16 +1,18 @@
 /* $Id$
  * $Version: 7.3.0$
- * $Revision: 8$
+ * $Revision: 11$
  */
 /**
  * Project InterMon v0.7.3
  */
 
+#pragma once
 #ifndef _CCONFIGURATION_H
 #define _CCONFIGURATION_H
 
 #include "InterMon.h"
 #include "Cname.h"
+#include "Cbuilder.h"
 #include "tinyxml.h"
 #include <fstream>      // std::ifstream
 
@@ -19,20 +21,10 @@ extern const std::string devNull;
 class Cconfiguration: public Cname {
 public:
     Cconfiguration(const std::string & s = devNull);
-    explicit Cconfiguration(const char ** c) {
-        char ** p = const_cast<char **>(c);
-        for (; *p != nullptr; ++p) {
-            _config.push_back(*p);
-        }
-    }
     ~Cconfiguration();
-    int parse();
-    const std::vector<std::string> & config() {
-        return _config;
-    }
+    int parse(std::vector<Chost*> & hosts);
 private:
     TiXmlDocument cfgxml;
-    std::vector<std::string> _config;
 };
 
 #endif //_CCONFIGURATION_H

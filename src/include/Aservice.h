@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 7.3.0$
- * $Revision: 9$
+ * $Revision: 12$
  */
 /**
  * Project InterMon v0.7.3
@@ -12,17 +12,17 @@
 
 #include "InterMon.h"
 #include "Cname.h"
-#include "Ccheck.h"
+#include "Acheck.h"
 #include "Cnotification.h"
 
-class Aservice: public Ccheck, public Cnotification {
+class Aservice: public Acheck, public Cnotification {
 public: 
     /* */
     Aservice() { /* empty */ };
     /* */
     virtual ~Aservice() { /* empty */ };
     /* */
-    virtual void checkCommand() { /* empty */ };
+    virtual void checkCommand() = 0;
     /* */
     virtual void notifyCommand() { /* empty */ };
 protected: 

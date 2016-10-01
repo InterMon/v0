@@ -1,12 +1,12 @@
 /* $Id$
  * $Version: 7.3.0$
- * $Revision: 8$
+ * $Revision: 11$
  */
 /**
  * Project InterMon v0.7.3
  */
 
-
+#pragma once
 #ifndef _CIPV4ADDRESS_H
 #define _CIPV4ADDRESS_H
 

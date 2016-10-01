@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 7.3.0$
- * $Revision: 8$
+ * $Revision: 11$
  */
 /**
  * Project InterMon v0.7.3
@@ -10,6 +10,7 @@
 
 const std::string devNull = "/dev/null";
 const char chost[] = "host";
+const char cservice[] = "service";
 const char cip[] = "ip";
 
 Cconfiguration::Cconfiguration(const std::string & s)
@@ -17,50 +18,32 @@ Cconfiguration::Cconfiguration(const std::string & s)
 
 Cconfiguration::~Cconfiguration() { }
 
-int Cconfiguration::parse() {
-    if (_config.size() > 0) {
-        std::cerr << "Configuration: "
-                  << this->name
-                  << " already defined"
-                  << std::endl;
-        return 1;
-    }
-#if defined(DEBUG) && defined(PRINTM)
-    printd("Prepare Cconfiguration") << std::endl;
-#endif
+int Cconfiguration::parse(std::vector<Chost*> & hosts) {
     if(!cfgxml.LoadFile()) {
         std::cout << "file "
                   << cfgxml.Value()
-                  << " have any errors"
-                  << std::endl;
+                  << " have any errors" << std::endl;
         return 2;
     }
-    TiXmlElement *xml1 = 0;
-    xml1 = cfgxml.FirstChildElement();
-    TiXmlElement *xml2 = 0;
-    xml2 = xml1->FirstChildElement(chost);
-    while(nullptr != xml2) {
-        const char * name = xml2->Attribute("name");
-        if (nullptr != name) {
-            _config.push_back(chost);
-            _config.push_back(name);
-            const char * ip = xml2->Attribute(cip);
-            if (nullptr != ip) {
-                _config.push_back(cip);
-                _config.push_back(ip);
-                std::cout << "Added host: " << name
-                          << " ip: " << ip
-                          << std::endl;
-            } else {
-                std::cout << "Added host: " << name
-                          << " UNKNOW ip!!!" << std::endl;
+    TiXmlElement * xmlconfig = cfgxml.FirstChildElement();
+    if (nullptr == xmlconfig) return 3;
+    TiXmlElement * xmlhost = xmlconfig->FirstChildElement(chost);
+    while(nullptr != xmlhost) {
+        Cbuilder builder(xmlhost);
+        Chost * host = nullptr;
+        if (nullptr != (host = builder.getResult())) {
+            hosts.push_back(host);
+            mdb.addHost(host->getHostname());
+            TiXmlElement * xmlservice = xmlhost->FirstChildElement(cservice);
+            while(nullptr != xmlservice) {
+                Aservice * service = builder.buildPart(xmlservice);
+                xmlservice = xmlservice->NextSiblingElement(chost);
+                host->addService(service);
             }
         }
-        _config.push_back("");
-        xml2 = xml2->NextSiblingElement(chost);
+        xmlhost = xmlhost->NextSiblingElement(chost);
     }
     return 0;
 }
-
 /* vim: syntax=cpp:fileencoding=utf-8:fileformat=unix:tw=78:ts=4:sw=4:sts=4:et
  * EOF */

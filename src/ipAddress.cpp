@@ -1,12 +1,18 @@
 /* $Id$
  * $Version: 7.3.0$
- * $Revision: 8$
+ * $Revision: 11$
  */
 /**
  * Project InterMon v0.7.3
  */
 
+#include "CipAddress.h"
 #include "Cipv4Address.h"
+
+CipAddress::CipAddress() { /* empty */ }
+
+CipAddress::~CipAddress() { /* empty */ }
+
 
 Cipv4Address::Cipv4Address() {
     // TODO

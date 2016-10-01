@@ -1,12 +1,12 @@
 /* $Id$
  * $Version: 7.3.0$
- * $Revision: 9$
+ * $Revision: 12$
  */
 /**
  * Project InterMon v0.7.3
  */
 
-
+#pragma once
 #ifndef _CCHECK_H
 #define _CCHECK_H
 
@@ -14,10 +14,10 @@
 #include "Cbasic.h"
 #include "Cperiod.h"
 
-class Ccheck: public Cbasic {
+class Acheck: public Cbasic {
 public:
-    Ccheck() { /* Empty */ }
-    virtual ~Ccheck() { /* Empty */ }
+    Acheck() { /* Empty */ }
+    virtual ~Acheck() { /* Empty */ }
     virtual void checkCommand() = 0;
     virtual int getCheckInterval() { return normalCheckInterval; }
 protected:
