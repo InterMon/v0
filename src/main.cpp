@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 7.3.0$
- * $Revision: 11$
+ * $Revision: 12$
  */
 /**
  * Project InterMon v0.7.3
@@ -11,7 +11,7 @@
 #include "Cconfiguration.h"
 #include "CserviceICMP.h"
 
-const char __version__[] = "Project InterMon v0.7.3";
+const char __version__[] = "Project InterMon $Version: 0.7.3";
 
 using namespace sqlite;
 using namespace std;
@@ -32,6 +32,7 @@ int main(int argc, char *argv[]) {
     mainServer.init();
     mainServer.run();
 #endif
+    char * _version_ = const_cast<char *>(__version__);
     return 0;
 }
 

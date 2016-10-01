@@ -1,9 +1,14 @@
+Design Patterns & Refactoring.
+ 1) Builder: Cconfiguration as Director and Abuilder, Cbuilder.
+    Separates object construction from its representation ;
+ 2) Factory Method: Acreator, CctreatorServiceICMP as ConcreteCreator
+    Creates an instance of several derived classes.
 
-This project build and tested on:
+Integrate https://sourceforge.net/projects/tinyxml/ ,
+build and tested on:
  1) Debian/GNU Linux with gcc (Debian 4.9.2-10) 4.9.2 and GNU Make 4.0
  2) Apple LLVM version 8.0.0 (clang-800.0.38)
- 3) FreeBSD 9.3-RELEASE g++49 (FreeBSD Ports Collection) 4.9.4
-    CC=gcc49 CXX=c++49 gmake
+ 3) MacPorts gcc6 6.1.0_0
 
 Integrate https://github.com/aminroosta/sqlite_modern_cpp.git
 This project (with define _MODERN_SQLITE_BOOST_OPTIONAL_SUPPORT)
@@ -13,8 +18,10 @@ build and tested on:
  2) Apple LLVM version 8.0.0 (clang-800.0.38)
     MacPorts boost @1.59.0_2+no_single+no_static+openmpi+python27+regex_match_extra
 
-Integrate https://sourceforge.net/projects/tinyxml/ ,
-build and tested on:
+
+This project build and tested on:
  1) Debian/GNU Linux with gcc (Debian 4.9.2-10) 4.9.2 and GNU Make 4.0
  2) Apple LLVM version 8.0.0 (clang-800.0.38)
- 3) MacPorts gcc6 6.1.0_0
+ 3) FreeBSD 9.3-RELEASE g++49 (FreeBSD Ports Collection) 4.9.4
+    CC=gcc49 CXX=c++49 gmake
+
