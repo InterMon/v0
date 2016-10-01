@@ -1,11 +1,13 @@
 /* $Id$
  * $Version: 7.3.0$
- * $Revision: 8$
+ * $Revision: 9$
  */
 /**
  * Project InterMon v0.7.3
  */
 
+#include "Cnotification.h"
+#include "CnotyfOpt.h"
 #include "CcontactGroup.h"
 
 CcontactGroup::CcontactGroup() { 
@@ -17,6 +19,22 @@ CcontactGroup::~CcontactGroup() {
 }
 
 void CcontactGroup::notifyMethod() {
+    // TODO
+}
+
+CnotyfOpt::CnotyfOpt() {
+    // TODO
+}
+
+CnotyfOpt::~CnotyfOpt() {
+    // TODO
+}
+
+Cnotification::Cnotification() {
+    // TODO
+}
+
+Cnotification::~Cnotification() {
     // TODO
 }
 

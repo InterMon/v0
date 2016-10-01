@@ -1,20 +1,20 @@
 /* $Id$
  * $Version: 7.3.0$
- * $Revision: 8$
+ * $Revision: 9$
  */
 /**
  * Project InterMon v0.7.3
  */
 
-
+#pragma once
 #ifndef _CSERVICESNMPGET_H
 #define _CSERVICESNMPGET_H
 
 #include "InterMon.h"
-#include "Cservice.h"
+#include "Aservice.h"
 
 
-class CserviceSNMPGet: public Cservice {
+class CserviceSNMPGet: public Aservice {
 public: 
     /* */
     CserviceSNMPGet();

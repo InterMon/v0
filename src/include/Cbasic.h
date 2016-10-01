@@ -1,18 +1,18 @@
 /* $Id$
  * $Version: 7.3.0$
- * $Revision: 10$
+ * $Revision: 11$
  */
 /**
  * Project InterMon v0.7.3
  */
 
-
+#pragma once
 #ifndef _CBASIC_H
 #define _CBASIC_H
 
 class Cbasic {
 public:
-    virtual ~Cbasic();
+    virtual ~Cbasic() { /* Empty */ }
 };
 
 #endif //_CBASIC_H

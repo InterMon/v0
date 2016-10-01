@@ -1,20 +1,20 @@
 /* $Id$
  * $Version: 7.3.0$
- * $Revision: 8$
+ * $Revision: 9$
  */
 /**
  * Project InterMon v0.7.3
  */
 
-
+#pragma once
 #ifndef _CSERVICEICMP_H
 #define _CSERVICEICMP_H
 
 #include "InterMon.h"
-#include "Cservice.h"
+#include "Aservice.h"
 
 
-class CserviceICMP: public Cservice {
+class CserviceICMP: public Aservice {
 public: 
     /* */
     CserviceICMP();

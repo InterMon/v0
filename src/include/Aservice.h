@@ -1,11 +1,12 @@
 /* $Id$
  * $Version: 7.3.0$
- * $Revision: 8$
+ * $Revision: 9$
  */
 /**
  * Project InterMon v0.7.3
  */
 
+#pragma once
 #ifndef _CSERVICE_H
 #define _CSERVICE_H
 
@@ -14,12 +15,12 @@
 #include "Ccheck.h"
 #include "Cnotification.h"
 
-class Cservice: public Ccheck, public Cnotification {
+class Aservice: public Ccheck, public Cnotification {
 public: 
     /* */
-    Cservice();
+    Aservice() { /* empty */ };
     /* */
-    virtual ~Cservice();
+    virtual ~Aservice() { /* empty */ };
     /* */
     virtual void checkCommand() { /* empty */ };
     /* */

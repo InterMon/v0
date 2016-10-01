@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 7.3.0$
- * $Revision: 15$
+ * $Revision: 16$
  */
 /**
  * Project InterMon v0.7.3
@@ -16,7 +16,7 @@
 #include "CipAddress.h"
 #include "Cipv4Address.h"
 #include "Cnotification.h"
-#include "Cservice.h"
+#include "Aservice.h"
 #include "sqlite_modern_cpp.h"
 
 class Cdb: public Cbasic {

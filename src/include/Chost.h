@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 7.3.0$
- * $Revision: 9$
+ * $Revision: 10$
  */
 /**
  * Project InterMon v0.7.3
@@ -16,7 +16,7 @@
 #include "CipAddress.h"
 #include "Cipv4Address.h"
 #include "Cnotification.h"
-#include "Cservice.h"
+#include "Aservice.h"
 
 class Chost: public Ccheck, public Cnotification {
 public: 
@@ -37,7 +37,7 @@ public:
 private: 
     std::string hostName;
     CipAddress ipAddress;
-    std::vector<Cservice> services;
+    std::vector<Aservice> services;
 };
 
 #endif //_CHOST_H

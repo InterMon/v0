@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 7.3.0$
- * $Revision: 8$
+ * $Revision: 9$
  */
 /**
  * Project InterMon v0.7.3
@@ -16,8 +16,8 @@
 
 class Ccheck: public Cbasic {
 public:
-    Ccheck();
-    virtual ~Ccheck() = 0;
+    Ccheck() { /* Empty */ }
+    virtual ~Ccheck() { /* Empty */ }
     virtual void checkCommand() = 0;
     virtual int getCheckInterval() { return normalCheckInterval; }
 protected:
