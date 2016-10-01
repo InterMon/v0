@@ -20,6 +20,7 @@ CXXFLAGS ?= $(INC_FLAGS) -std=c++11 -pthread
 
 $(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
 	$(CXX) $(OBJS) -o $@ $(LDFLAGS)
+	echo;echo run intermon from directory build at current place
 
 # c source
 $(BUILD_DIR)/%.c.o: %.c
