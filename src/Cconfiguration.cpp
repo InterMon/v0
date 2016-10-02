@@ -1,9 +1,9 @@
 /* $Id$
- * $Version: 7.3.0$
- * $Revision: 11$
+ * $Version: 7.4.0$
+ * $Revision: 14$
  */
 /**
- * Project InterMon v0.7.3
+ * Project InterMon $Version: 0.7.4
  */
 
 #include "Cconfiguration.h"
@@ -14,18 +14,18 @@ const char cservice[] = "service";
 const char cip[] = "ip";
 
 Cconfiguration::Cconfiguration(const std::string & s)
-: cfgxml(s.c_str()) { }
+: _cfgxml(s.c_str()) { }
 
 Cconfiguration::~Cconfiguration() { }
 
 int Cconfiguration::parse(std::vector<Chost*> & hosts) {
-    if(!cfgxml.LoadFile()) {
+    if(!_cfgxml.LoadFile()) {
         std::cout << "file "
-                  << cfgxml.Value()
+                  << _cfgxml.Value()
                   << " have any errors" << std::endl;
         return 2;
     }
-    TiXmlElement * xmlconfig = cfgxml.FirstChildElement();
+    TiXmlElement * xmlconfig = _cfgxml.FirstChildElement();
     if (nullptr == xmlconfig) return 3;
     TiXmlElement * xmlhost = xmlconfig->FirstChildElement(chost);
     while(nullptr != xmlhost) {
@@ -45,5 +45,6 @@ int Cconfiguration::parse(std::vector<Chost*> & hosts) {
     }
     return 0;
 }
+
 /* vim: syntax=cpp:fileencoding=utf-8:fileformat=unix:tw=78:ts=4:sw=4:sts=4:et
  * EOF */

@@ -1,9 +1,9 @@
 /* $Id$
- * $Version: 7.3.0$
- * $Revision: 9$
+ * $Version: 7.4.0$
+ * $Revision: 12$
  */
 /**
- * Project InterMon v0.7.3
+ * Project InterMon $Version: 0.7.4
  */
 
 #pragma once
@@ -25,7 +25,7 @@ public:
     /* */
     void notifyCommand();
 protected: 
-    std::string community;
+    std::string _community;
 };
 
 #endif //_CSERVICESNMPGET_H

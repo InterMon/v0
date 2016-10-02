@@ -1,9 +1,9 @@
 /* $Id$
- * $Version: 7.3.0$
- * $Revision: 19$
+ * $Version: 7.4.0$
+ * $Revision: 22$
  */
 /**
- * Project InterMon v0.7.3
+ * Project InterMon $Version: 0.7.4
  */
 
 #pragma once
@@ -26,7 +26,8 @@ public:
     /* */
     ~Cdb();
     /* */
-    void backup(const std::string & name = "sqlite3.db") throw(std::runtime_error);
+    void backup(const std::string & name = "sqlite3.db")
+        throw(std::runtime_error);
     /* */
     void addHost(const std::string & name);
     /* */
@@ -34,7 +35,7 @@ public:
     /* */
     void setHostStatus(const std::string & name, int status);
 private: 
-    sqlite::database db = {":memory:"};
+    sqlite::database _db = {":memory:"};
 };
 
 extern Cdb mdb;

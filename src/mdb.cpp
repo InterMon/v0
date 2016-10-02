@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 7.3.0$
- * $Revision: 14$
+ * $Revision: 17$
  */
 /**
  * Project InterMon v0.7.3
@@ -15,14 +15,14 @@ using namespace sqlite;
 using namespace std;
 
 Cdb::Cdb() {
-    db << "CREATE TABLE hosts"
-          " ( id    INTEGER PRIMARY KEY NOT NULL"
-          " , name  TEXT UNIQUE NOT NULL "
-          " , state INTEGER state );";
+    _db << "CREATE TABLE hosts"
+           " ( id    INTEGER PRIMARY KEY NOT NULL"
+           " , name  TEXT UNIQUE NOT NULL "
+           " , state INTEGER state );";
 }
 
 Cdb::~Cdb() {
-    sqlite::backupDb(&this->db, "sqlite3.db", NULL);
+    sqlite::backupDb(&this->_db, "sqlite3.db", NULL);
 }
 
 void Cdb::backup(const std::string & name) throw(std::runtime_error) {
@@ -30,7 +30,7 @@ void Cdb::backup(const std::string & name) throw(std::runtime_error) {
     cerr << "running..." << endl;
 #endif
     int rc = 0;
-    if (0 == (rc = sqlite::backupDb(&this->db, name.c_str(), NULL))) {
+    if (0 == (rc = sqlite::backupDb(&this->_db, name.c_str(), NULL))) {
 #if defined(DEBUG) && defined(PRINTM)
         printd("Ok! rc: ", rc) << endl;
 #endif
@@ -43,8 +43,8 @@ void Cdb::backup(const std::string & name) throw(std::runtime_error) {
 }
 
 void Cdb::addHost(const std::string & name) try {
-    db << "INSERT INTO hosts (name) VALUES (?)"
-       << name;
+    _db << "INSERT INTO hosts (name) VALUES (?)"
+        << name;
 }
 catch (sqlite_exception& e) {
     cerr << e.what() << endl;
@@ -52,14 +52,14 @@ catch (sqlite_exception& e) {
 
 int Cdb::getHostStatus(const std::string & name) {
     int result = 0;
-    db << "SELECT state FROM hosts WHERE name = ?"
-       << name >> result;
+    _db << "SELECT state FROM hosts WHERE name = ?"
+        << name >> result;
     return result;
 }
 
 void Cdb::setHostStatus(const std::string & name, int status) try {
-    db << "UPDATE hosts SET state = ? WHERE name = ?"
-       << status << name;
+    _db << "UPDATE hosts SET state = ? WHERE name = ?"
+        << status << name;
 }
 catch (sqlite_exception& e) {
     cerr << e.what() << endl;

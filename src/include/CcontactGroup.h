@@ -1,9 +1,9 @@
 /* $Id$
- * $Version: 7.3.0$
- * $Revision: 11$
+ * $Version: 7.4.0$
+ * $Revision: 14$
  */
 /**
- * Project InterMon v0.7.3
+ * Project InterMon $Version: 0.7.4
  */
 
 #pragma once
@@ -22,7 +22,7 @@ public:
     /* */
     void notifyMethod();
 private:
-    std::vector<std::string> persons;
+    std::vector<std::string> _persons;
 };
 
 #endif //_CCONTACTGROUP_H

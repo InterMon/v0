@@ -1,9 +1,9 @@
 /* $Id$
- * $Version: 7.3.0$
- * $Revision: 15$
+ * $Version: 7.4.0$
+ * $Revision: 18$
  */
 /**
- * Project InterMon v0.7.3
+ * Project InterMon $Version: 0.7.4
  */
 
 extern "C" {
@@ -11,7 +11,6 @@ extern "C" {
 }
 #include "Cdb.h"
 #include "CmainServer.h"
-#include "Cconfiguration.h"
 
 using namespace std;
 
@@ -23,34 +22,37 @@ const string localhost = "127.0.0.1";
 const string defaultConfigFile = "intermon.conf.xml";
 
 CmainServer::CmainServer()
-: conf(defaultConfigFile), ipAddress(localhost)
+: _conf(defaultConfigFile), _ipAddress(localhost)
 { /* empty */ }
 
 CmainServer::CmainServer(const std::string & configFile)
-: conf(configFile), ipAddress(localhost)
+: _conf(configFile), _ipAddress(localhost)
 { /* empty */ }
 
 CmainServer::~CmainServer() {
     for (tIter i = _threads.begin(); i != _threads.end(); ++i) {
         delete *i;
     }
-    for (hIter i = hosts.begin(); i != hosts.end(); ++i) {
+    for (hIter i = _hosts.begin(); i != _hosts.end(); ++i) {
         delete *i;
     }
 }
 
 void CmainServer::init() {
     readConf();
-    for (size_t i = 0; i < hosts.size(); ++i) {
+    for (size_t i = 0; i < _hosts.size(); ++i) {
         cerr << "Hostname: "
-             << hosts[i]->getHostname()
-             << "&host[" << i << "]: "
-             << &hosts[i]
+             << _hosts[i]->getHostname()
+             << "&_host[" << i << "]: "
+             << &_hosts[i]
              << endl;
+        Chost * host = _hosts[i];
+        cerr << "cmd done" << endl;
     }
 }
 
 void eventLoop0(Chost * host) {
+    Acommand * cmd = new Ccommand<Chost>(host, &Chost::checkCommand);
     while (true) {
         const string & hostName = host->getHostname();
         mdb.setHostStatus(hostName, 1);
@@ -59,17 +61,18 @@ void eventLoop0(Chost * host) {
              << hostName << ", "
              << mdb.getHostStatus(hostName)
              << ")" << endl;
-        host->checkCommand();
+        cmd->execute();
         myusleep(host->getCheckInterval()*MYUSLEEP_1SEC/2);
         cerr << "getHostStatus("
              << hostName << ") => "
              << mdb.getHostStatus(hostName)
              << endl;
     }
+    delete cmd;
 }
 
 void CmainServer::run() {
-    for (hIter i = hosts.begin(); i != hosts.end(); ++i) {
+    for (hIter i = _hosts.begin(); i != _hosts.end(); ++i) {
         Chost * host = *i;
         _threads.push_back(new thread(eventLoop0, host));
         myusleep(MYUSLEEP_1SEC/2);

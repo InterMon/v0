@@ -1,9 +1,9 @@
 /* $Id$
- * $Version: 7.3.0$
- * $Revision: 13$
+ * $Version: 7.4.0$
+ * $Revision: 16$
  */
 /**
- * Project InterMon v0.7.3
+ * Project InterMon $Version: 0.7.4
  */
 
 #pragma once
@@ -11,7 +11,6 @@
 #define _CSERVICE_H
 
 #include "InterMon.h"
-#include "Cname.h"
 #include "Acheck.h"
 #include "Cnotification.h"
 
@@ -26,7 +25,7 @@ public:
     /* */
     virtual void notifyCommand() = 0;
 protected: 
-    std::string description;
+    std::string _description;
 };
 
 #endif //_CSERVICE_H

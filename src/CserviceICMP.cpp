@@ -1,9 +1,9 @@
 /* $Id$
- * $Version: 7.3.0$
- * $Revision: 11$
+ * $Version: 7.4.0$
+ * $Revision: 14$
  */
 /**
- * Project InterMon v0.7.3
+ * Project InterMon $Version: 0.7.4
  */
 
 #include "CserviceICMP.h"
@@ -18,7 +18,7 @@ CserviceICMP::~CserviceICMP() {
 
 void CserviceICMP::checkCommand() {
 #if defined(DEBUG) && defined(PRINTM)
-    printd("service icmp check: ", icmpType) << std::endl;
+    printd("service icmp check: ", _icmpType) << std::endl;
 #endif
 }
 

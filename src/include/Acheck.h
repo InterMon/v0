@@ -1,9 +1,9 @@
 /* $Id$
- * $Version: 7.3.0$
- * $Revision: 12$
+ * $Version: 7.4.0$
+ * $Revision: 15$
  */
 /**
- * Project InterMon v0.7.3
+ * Project InterMon $Version: 0.7.4
  */
 
 #pragma once
@@ -19,13 +19,13 @@ public:
     Acheck() { /* Empty */ }
     virtual ~Acheck() { /* Empty */ }
     virtual void checkCommand() = 0;
-    virtual int getCheckInterval() { return normalCheckInterval; }
+    virtual int getCheckInterval() { return _normalCheckInterval; }
 protected:
-    int state = 0;
-    Cperiod checkPeriod;
-    int normalCheckInterval = 5;
-    int maxCheckAttempts = 2;
-    int retryInterval = 2;
+    int     _state = 0;
+    Cperiod _checkPeriod;
+    int     _normalCheckInterval = 5;
+    int     _maxCheckAttempts = 2;
+    int     _retryInterval = 2;
 };
 
 #endif //_CCHECK_H

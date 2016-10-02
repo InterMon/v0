@@ -1,9 +1,9 @@
 /* $Id$
- * $Version: 7.3.0$
- * $Revision: 11$
+ * $Version: 7.4.0$
+ * $Revision: 14$
  */
 /**
- * Project InterMon v0.7.3
+ * Project InterMon $Version: 0.7.4
  */
 
 #pragma once
@@ -14,6 +14,8 @@
 #include "Cconfiguration.h"
 #include "Cname.h"
 #include "Chost.h"
+#include "Acommand.h"
+#include "Ccommand.h"
 #include <thread>
 
 class CmainServer: public Cname {
@@ -27,15 +29,15 @@ public:
     /* */
     void init();
     /* */
-    void readConf() { conf.parse(hosts); }
+    void readConf() { _conf.parse(_hosts); }
     /* */
     void run();
     /* */
     void eventLoop(Chost & host);
 private: 
-    Cconfiguration conf;
-    std::string ipAddress;
-    std::vector<Chost*> hosts;
+    Cconfiguration            _conf;
+    std::string               _ipAddress;
+    std::vector<Chost*>       _hosts;
     std::vector<std::thread*> _threads;
     friend void eventLoop0(Chost *);
 };

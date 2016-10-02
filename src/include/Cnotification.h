@@ -1,9 +1,9 @@
 /* $Id$
- * $Version: 7.3.0$
- * $Revision: 11$
+ * $Version: 7.4.0$
+ * $Revision: 14$
  */
 /**
- * Project InterMon v0.7.3
+ * Project InterMon $Version: 0.7.4
  */
 
 #pragma once
@@ -26,10 +26,10 @@ public:
     /* */
     virtual void notifyCommand() = 0;
 protected: 
-    Cperiod notificationPeriod;
-    int notificationInterval = 30;
-    CnotyfOpt notificationOptions;
-    std::vector<CcontactGroup> contactGroups;
+    Cperiod                    _notificationPeriod;
+    int                        _notificationInterval = 30;
+    CnotyfOpt                  _notificationOptions;
+    std::vector<CcontactGroup> _contactGroups;
 };
 
 #endif //_CNOTIFICATION_H

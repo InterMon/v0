@@ -1,9 +1,9 @@
 /* $Id$
- * $Version: 7.3.1$
- * $Revision: 1$
+ * $Version: 7.4.0$
+ * $Revision: 3$
  */
 /**
- * Project InterMon $Version: 0.7.3
+ * Project InterMon $Version: 0.7.4
  */
 
 #pragma once

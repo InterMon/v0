@@ -1,9 +1,9 @@
 /* $Id$
- * $Version: 7.3.0$
- * $Revision: 11$
+ * $Version: 7.4.0$
+ * $Revision: 14$
  */
 /**
- * Project InterMon v0.7.3
+ * Project InterMon $Version: 0.7.4
  */
 
 #pragma once
@@ -31,7 +31,7 @@ public:
      */
     std::string convToStr(char*);
 protected: 
-    char octets[4];
+    char _octets[4];
 };
 
 #endif //_CIPV4ADDRESS_H
