@@ -1,25 +1,59 @@
 /* $Id$
- * $Version: 7.4.0$
- * $Revision: 14$
+ * $Version: 0.8$
+ * $Revision: 15$
  */
 /**
- * Project InterMon $Version: 0.7.4
+ * Project InterMon $Version: 0.8
  */
 
+#include <queue>
+#include <iostream>
+#include "Cbuilder.h"
+#include "Cdb.h"
 #include "Cconfiguration.h"
-
-const std::string devNull = "/dev/null";
-const char chost[] = "host";
-const char cservice[] = "service";
-const char cip[] = "ip";
+#include "strs.h"
 
 Cconfiguration::Cconfiguration(const std::string & s)
-: _cfgxml(s.c_str()) { }
+: _cfgxml(s.c_str()) { /* Empty */ }
 
-Cconfiguration::~Cconfiguration() { }
+Cconfiguration::~Cconfiguration() { /* Empty */ }
 
-int Cconfiguration::parse(std::vector<Chost*> & hosts) {
-    if(!_cfgxml.LoadFile()) {
+Acommand *
+Cconfiguration::parseGetCommand(Aservice * service, TiXmlElement * xmlservice)
+{
+    return service->getCheckCommand();
+}
+
+void
+Cconfiguration::parseHost(std::vector<Chost*> & hosts, TiXmlElement * xmlhost)
+try {
+    Cbuilder builder(xmlhost);
+    Chost * host = nullptr;
+    if (nullptr == (host = builder.getResult()))
+        return;
+    hosts.push_back(host);
+    mdb.addHost(host->getHostname());
+    TiXmlElement * xmlservice = xmlhost->FirstChildElement(cservice);
+    while (nullptr != xmlservice) {
+        Aservice * service = builder.buildPart(xmlservice);
+        if (nullptr != service) {
+            host->addService(service);
+            Acommand * cmd = parseGetCommand(service, xmlservice);
+            if (nullptr != cmd) {
+                // host->AddCommand(cmd);
+            }
+            xmlservice = xmlservice->NextSiblingElement(chost);
+        }
+    }
+}
+catch (std::bad_alloc & e) {
+    std::cerr << e.what() << std::endl;
+}
+
+int
+Cconfiguration::parse(std::vector<Chost*> & hosts)
+{
+    if (!_cfgxml.LoadFile()) {
         std::cout << "file "
                   << _cfgxml.Value()
                   << " have any errors" << std::endl;
@@ -28,19 +62,8 @@ int Cconfiguration::parse(std::vector<Chost*> & hosts) {
     TiXmlElement * xmlconfig = _cfgxml.FirstChildElement();
     if (nullptr == xmlconfig) return 3;
     TiXmlElement * xmlhost = xmlconfig->FirstChildElement(chost);
-    while(nullptr != xmlhost) {
-        Cbuilder builder(xmlhost);
-        Chost * host = nullptr;
-        if (nullptr != (host = builder.getResult())) {
-            hosts.push_back(host);
-            mdb.addHost(host->getHostname());
-            TiXmlElement * xmlservice = xmlhost->FirstChildElement(cservice);
-            while(nullptr != xmlservice) {
-                Aservice * service = builder.buildPart(xmlservice);
-                xmlservice = xmlservice->NextSiblingElement(chost);
-                host->addService(service);
-            }
-        }
+    while (nullptr != xmlhost) {
+        parseHost(hosts, xmlhost);
         xmlhost = xmlhost->NextSiblingElement(chost);
     }
     return 0;

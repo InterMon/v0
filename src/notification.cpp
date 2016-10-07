@@ -1,40 +1,48 @@
 /* $Id$
- * $Version: 7.3.0$
- * $Revision: 9$
+ * $Version: 0.8$
+ * $Revision: 10$
  */
 /**
- * Project InterMon v0.7.3
+ * Project InterMon $Version: 0.8
  */
 
 #include "Cnotification.h"
-#include "CnotyfOpt.h"
+#include "CnotifyOpt.h"
 #include "CcontactGroup.h"
 
-CcontactGroup::CcontactGroup() { 
+CcontactGroup::CcontactGroup()
+{
     // TODO
 }
 
-CcontactGroup::~CcontactGroup() { 
+CcontactGroup::~CcontactGroup()
+{
     // TODO
 }
 
-void CcontactGroup::notifyMethod() {
+void
+CcontactGroup::notifyMethod()
+{
     // TODO
 }
 
-CnotyfOpt::CnotyfOpt() {
+CnotyfOpt::CnotyfOpt()
+{
     // TODO
 }
 
-CnotyfOpt::~CnotyfOpt() {
+CnotyfOpt::~CnotyfOpt()
+{
     // TODO
 }
 
-Cnotification::Cnotification() {
+Cnotification::Cnotification()
+{
     // TODO
 }
 
-Cnotification::~Cnotification() {
+Cnotification::~Cnotification()
+{
     // TODO
 }
 

@@ -1,22 +1,18 @@
 /* $Id$
- * $Version: 7.4.0$
- * $Revision: 22$
+ * $Version: 0.8$
+ * $Revision: 23$
  */
 /**
- * Project InterMon $Version: 0.7.4
+ * Project InterMon $Version: 0.8
  */
 
 #pragma once
 #ifndef _CDB_H
 #define _CDB_H
 
-#include "InterMon.h"
-#include "Cname.h"
-#include "Acheck.h"
-#include "CipAddress.h"
-#include "Cipv4Address.h"
-#include "Cnotification.h"
-#include "Aservice.h"
+#include <string>
+#include <stdexcept>
+#include "Cbasic.h"
 #include "sqlite_modern_cpp.h"
 
 class Cdb: public Cbasic {

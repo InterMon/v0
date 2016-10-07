@@ -1,9 +1,9 @@
 /* $Id$
- * $Version: 7.4.0$
- * $Revision: 7$
+ * $Version: 0.8$
+ * $Revision: 8$
  */
 /**
- * Project InterMon $Version: 0.7.4
+ * Project InterMon $Version: 0.8
  */
 
 #pragma once
@@ -16,6 +16,8 @@
 
 /**
   * class Abuilder
+  * title Abstract builder
+  * goals Implement Design Patterns: Bulder
   */
 
 class Abuilder {

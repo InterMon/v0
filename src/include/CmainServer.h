@@ -1,22 +1,20 @@
 /* $Id$
- * $Version: 7.4.0$
- * $Revision: 14$
+ * $Version: 0.8$
+ * $Revision: 15$
  */
 /**
- * Project InterMon $Version: 0.7.4
+ * Project InterMon $Version: 0.8
  */
 
 #pragma once
 #ifndef _CMAINSERVER_H
 #define _CMAINSERVER_H
 
-#include "InterMon.h"
+#include <string>
+#include <thread>
 #include "Cconfiguration.h"
 #include "Cname.h"
 #include "Chost.h"
-#include "Acommand.h"
-#include "Ccommand.h"
-#include <thread>
 
 class CmainServer: public Cname {
 public: 

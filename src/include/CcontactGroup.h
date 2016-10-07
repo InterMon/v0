@@ -1,16 +1,17 @@
 /* $Id$
- * $Version: 7.4.0$
- * $Revision: 14$
+ * $Version: 0.8$
+ * $Revision: 15$
  */
 /**
- * Project InterMon $Version: 0.7.4
+ * Project InterMon $Version: 0.8
  */
 
 #pragma once
 #ifndef _CCONTACTGROUP_H
 #define _CCONTACTGROUP_H
 
-#include "InterMon.h"
+#include <string>
+#include <vector>
 #include "Cname.h"
 
 class CcontactGroup: private Cname {

@@ -1,25 +1,28 @@
 /* $Id$
- * $Version: 7.4.0$
- * $Revision: 18$
+ * $Version: 0.8$
+ * $Revision: 19$
  */
 /**
- * Project InterMon $Version: 0.7.4
+ * Project InterMon $Version: 0.8
  */
 
+#include <iostream>
+#include <string>
+#include <vector>
 extern "C" {
 #include "cpue.h"
 }
 #include "Cdb.h"
+#include "Acommand.h"
+#include "Ccommand.h"
 #include "CmainServer.h"
+#include "strs.h"
 
 using namespace std;
 
 typedef vector<Chost*>::iterator hIter;
 typedef vector<string>::const_iterator cIter;
 typedef vector<thread*>::iterator tIter;
-
-const string localhost = "127.0.0.1";
-const string defaultConfigFile = "intermon.conf.xml";
 
 CmainServer::CmainServer()
 : _conf(defaultConfigFile), _ipAddress(localhost)
@@ -29,7 +32,8 @@ CmainServer::CmainServer(const std::string & configFile)
 : _conf(configFile), _ipAddress(localhost)
 { /* empty */ }
 
-CmainServer::~CmainServer() {
+CmainServer::~CmainServer()
+{
     for (tIter i = _threads.begin(); i != _threads.end(); ++i) {
         delete *i;
     }
@@ -38,7 +42,9 @@ CmainServer::~CmainServer() {
     }
 }
 
-void CmainServer::init() {
+void
+CmainServer::init()
+{
     readConf();
     for (size_t i = 0; i < _hosts.size(); ++i) {
         cerr << "Hostname: "
@@ -51,7 +57,9 @@ void CmainServer::init() {
     }
 }
 
-void eventLoop0(Chost * host) {
+void
+eventLoop0(Chost * host)
+{
     Acommand * cmd = new Ccommand<Chost>(host, &Chost::checkCommand);
     while (true) {
         const string & hostName = host->getHostname();
@@ -71,7 +79,16 @@ void eventLoop0(Chost * host) {
     delete cmd;
 }
 
-void CmainServer::run() {
+void
+eventLoop1(Chost * host)
+{
+    while (true) {
+    }
+}
+
+void
+CmainServer::run()
+{
     for (hIter i = _hosts.begin(); i != _hosts.end(); ++i) {
         Chost * host = *i;
         _threads.push_back(new thread(eventLoop0, host));
@@ -85,9 +102,9 @@ void CmainServer::run() {
 #if defined(DEBUG) && defined(PRINTM)
         printd("mdb.backup(): ");
 #endif
-        try { 
-            mdb.backup(); 
-        } catch (std::runtime_error& e) {
+        try {
+            mdb.backup();
+        } catch (std::runtime_error & e) {
             cerr << e.what() << endl;
 #if defined(DEBUG) && defined(PRINTM)
             printd("Error: ", e.what()) << endl;
@@ -96,7 +113,9 @@ void CmainServer::run() {
     }
 }
 
-void CmainServer::eventLoop(Chost & host) {
+void
+CmainServer::eventLoop(Chost & host)
+{
     // TODO
 }
 

@@ -1,22 +1,28 @@
 /* $Id$
- * $Version: 7.4.0$
- * $Revision: 3$
+ * $Version: 0.8$
+ * $Revision: 4$
  */
 /**
- * Project InterMon $Version: 0.7.4
+ * Project InterMon $Version: 0.8
  */
 
 #pragma once
 #ifndef CCOMMAND_H
 #define CCOMMAND_H
 
-#include "Acheck.h"
 #include "Acommand.h"
-#include "Chost.h"
 #include <string>
 
 /**
   * class Ccommand
+  * title Сoncrete command
+  * goals Implement Design Patterns: Command
+  * Concrete class implementing the Acommand interface.
+  *
+  * Create a class that encapsulates an object and a member function
+  * a pointer to a member function (the attribute's name is "Action")
+  * Receiver:- Knows how to perform the command "Action".
+  *
   */
 
 template <class Receiver>
@@ -42,7 +48,7 @@ public:
      * Set the value of state
      * @param new_var the new value of state
      */
-    void setState(int new_var)   {
+    void setState(int new_var) {
         _state = new_var;
     }
 
@@ -50,7 +56,7 @@ public:
      * Get the value of state
      * @return the value of state
      */
-    int getState()   {
+    int getState() {
       return _state;
     }
 private:

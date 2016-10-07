@@ -1,21 +1,22 @@
 /* $Id$
- * $Version: 7.4.0$
- * $Revision: 12$
+ * $Version: 0.8$
+ * $Revision: 13$
  */
 /**
- * Project InterMon $Version: 0.7.4
+ * Project InterMon $Version: 0.8
  */
 
 #pragma once
 #ifndef _CSERVICESNMPGET_H
 #define _CSERVICESNMPGET_H
 
-#include "InterMon.h"
+#include <string>
+#include <stdexcept>
 #include "Aservice.h"
-
+#include "Acommand.h"
 
 class CserviceSNMPGet: public Aservice {
-public: 
+public:
     /* */
     CserviceSNMPGet();
     /* */
@@ -24,7 +25,9 @@ public:
     void checkCommand();
     /* */
     void notifyCommand();
-protected: 
+    /* */
+    Acommand * getCheckCommand() throw(std::bad_alloc);
+protected:
     std::string _community;
 };
 

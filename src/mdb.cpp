@@ -1,31 +1,34 @@
 /* $Id$
- * $Version: 7.3.0$
- * $Revision: 17$
+ * $Version: 0.8$
+ * $Revision: 18$
  */
 /**
- * Project InterMon v0.7.3
+ * Project InterMon $Version: 0.8
  */
 
 #define _MODERN_SQLITE_BOOST_OPTIONAL_SUPPORT
 #include "Cdb.h"
 #include "backupDb.h"
-#include <stdexcept>
 
 using namespace sqlite;
 using namespace std;
 
-Cdb::Cdb() {
+Cdb::Cdb()
+{
     _db << "CREATE TABLE hosts"
            " ( id    INTEGER PRIMARY KEY NOT NULL"
            " , name  TEXT UNIQUE NOT NULL "
            " , state INTEGER state );";
 }
 
-Cdb::~Cdb() {
+Cdb::~Cdb()
+{
     sqlite::backupDb(&this->_db, "sqlite3.db", NULL);
 }
 
-void Cdb::backup(const std::string & name) throw(std::runtime_error) {
+void
+Cdb::backup(const std::string & name) throw(std::runtime_error)
+{
 #if defined(DEBUG) && defined(PRINTM)
     cerr << "running..." << endl;
 #endif
@@ -42,7 +45,9 @@ void Cdb::backup(const std::string & name) throw(std::runtime_error) {
     }
 }
 
-void Cdb::addHost(const std::string & name) try {
+void
+Cdb::addHost(const std::string & name)
+try {
     _db << "INSERT INTO hosts (name) VALUES (?)"
         << name;
 }
@@ -50,14 +55,18 @@ catch (sqlite_exception& e) {
     cerr << e.what() << endl;
 }
 
-int Cdb::getHostStatus(const std::string & name) {
+int
+Cdb::getHostStatus(const std::string & name)
+{
     int result = 0;
     _db << "SELECT state FROM hosts WHERE name = ?"
         << name >> result;
     return result;
 }
 
-void Cdb::setHostStatus(const std::string & name, int status) try {
+void
+Cdb::setHostStatus(const std::string & name, int status)
+try {
     _db << "UPDATE hosts SET state = ? WHERE name = ?"
         << status << name;
 }

@@ -1,16 +1,15 @@
 /* $Id$
- * $Version: 7.4.0$
- * $Revision: 14$
+ * $Version: 0.8$
+ * $Revision: 15$
  */
 /**
- * Project InterMon $Version: 0.7.4
+ * Project InterMon $Version: 0.8
  */
 
 #pragma once
 #ifndef _CPERIOD_H
 #define _CPERIOD_H
 
-#include "InterMon.h"
 #include "Cbasic.h"
 #include "period_t.h"
 

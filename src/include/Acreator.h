@@ -1,18 +1,18 @@
 /* $Id$
- * $Version: 7.4.0$
- * $Revision: 7$
+ * $Version: 0.8$
+ * $Revision: 8$
  */
 /**
- * Project InterMon $Version: 0.7.4
+ * Project InterMon $Version: 0.8
  */
 
 #pragma once
 #ifndef ACREATOR_H
 #define ACREATOR_H
 
+#include <string>
 #include "tinyxml.h"
 #include "Aservice.h"
-#include <string>
 
 /**
   * class Acreator

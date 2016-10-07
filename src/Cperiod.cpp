@@ -1,18 +1,20 @@
 /* $Id$
- * $Version: 7.4.0$
- * $Revision: 11$
+ * $Version: 0.8$
+ * $Revision: 12$
  */
 /**
- * Project InterMon $Version: 0.7.4
+ * Project InterMon $Version: 0.8
  */
 
 #include "Cperiod.h"
 
-Cperiod::Cperiod() {
+Cperiod::Cperiod()
+{
     // TODO
 }
 
-Cperiod::~Cperiod() {
+Cperiod::~Cperiod()
+{
     // TODO
 }
 

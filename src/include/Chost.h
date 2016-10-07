@@ -1,21 +1,19 @@
 /* $Id$
- * $Version: 7.4.0$
- * $Revision: 15$
+ * $Version: 0.8$
+ * $Revision: 16$
  */
 /**
- * Project InterMon $Version: 0.7.4
+ * Project InterMon $Version: 0.8
  */
 
 #pragma once
 #ifndef _CHOST_H
 #define _CHOST_H
 
-#include "InterMon.h"
-#include "Cname.h"
+#include <queue>
+#include <string>
 #include "Acheck.h"
-#include "Cdb.h"
 #include "CipAddress.h"
-#include "Cipv4Address.h"
 #include "Cnotification.h"
 #include "Aservice.h"
 #include "Acommand.h"
@@ -36,11 +34,14 @@ public:
     void notifyCommand();
     /* */
     const std::string & getHostname() { return _hostName; };
+    /* */
     void addService(Aservice * service);
+    /* */
+    void AddCommand(Acommand * command);
 private: 
-    std::string            _hostName;
-    CipAddress             _ipAddress;
-    std::vector<Aservice*> _services;
+    std::string                    _hostName;
+    CipAddress                     _ipAddress;
+    std::vector<Aservice*>         _services;
 };
 
 #endif //_CHOST_H

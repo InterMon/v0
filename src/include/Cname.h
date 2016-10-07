@@ -1,18 +1,16 @@
 /* $Id$
- * $Version: 7.4.0$
- * $Revision: 15$
+ * $Version: 0.8$
+ * $Revision: 16$
  */
 /**
- * Project InterMon $Version: 0.7.4
+ * Project InterMon $Version: 0.8
  */
 
 #pragma once
 #ifndef _CNAME_H
 #define _CNAME_H
 
-#include "InterMon.h"
 #include "Cid.h"
-
 
 class Cname: public Cid {
 public: 

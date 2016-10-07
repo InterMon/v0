@@ -1,24 +1,28 @@
 /* $Id$
- * $Version: 7.4.0$
- * $Revision: 18$
+ * $Version: 0.8$
+ * $Revision: 19$
  */
 /**
- * Project InterMon $Version: 0.7.4
+ * Project InterMon $Version: 0.8
  */
 
+#include "Cdb.h"
 #include "Chost.h"
 
 using namespace std;
 
 typedef vector<Aservice*>::iterator sIter;
 
-Chost::~Chost() {
+Chost::~Chost()
+{
     for (sIter i = _services.begin(); i != _services.end(); ++i) {
         delete *i;
     }
 }
 
-void Chost::checkCommand() {
+void
+Chost::checkCommand()
+{
 #if defined(DEBUG) && defined(PRINTM)
     printd("check host: ", _hostName) << endl;
 #endif
@@ -30,22 +34,29 @@ void Chost::checkCommand() {
     checkServices();
 }
 
-void Chost::checkServices() {
+void
+Chost::checkServices()
+{
     for (sIter i = _services.begin(); i != _services.end(); ++i) {
         (*i)->checkCommand();
     }
 }
 
-void Chost::notifyCommand() {
+void
+Chost::notifyCommand()
+{
     // TODO
 }
 
-void Chost::addService(Aservice * service) {
+void
+Chost::addService(Aservice * service)
+{
 #if defined(DEBUG) && defined(PRINTM)
     printd("add service!") << endl;
 #endif
     if (nullptr == service) return;
     _services.push_back(service);
 }
+
 /* vim: syntax=cpp:fileencoding=utf-8:fileformat=unix:tw=78:ts=4:sw=4:sts=4:et
  * EOF */

@@ -1,22 +1,32 @@
 /* $Id$
- * $Version: 7.4.0$
- * $Revision: 14$
+ * $Version: 0.8$
+ * $Revision: 15$
  */
 /**
- * Project InterMon $Version: 0.7.4
+ * Project InterMon $Version: 0.8
  */
 
 #pragma once
 #ifndef _CCONFIGURATION_H
 #define _CCONFIGURATION_H
 
-#include "InterMon.h"
-#include "Cname.h"
-#include "Cbuilder.h"
+#include <string>
 #include "tinyxml.h"
-#include <fstream>      // std::ifstream
+#include "Chost.h"
+#include "Cname.h"
+#include "Acommand.h"
+#include "strs.h"
 
-extern const std::string devNull;
+/**
+  * class Cconfiguration
+  * title Сoncrete configuration
+  * goals 
+  * Configuration input and build routines.
+  *
+  * Method parse read all configuration data.
+  * Method read in all host configuration data from xmlhost.
+  * Method read in all host configuration data from xmlhost.
+  */
 
 class Cconfiguration: public Cname {
 public:
@@ -24,6 +34,8 @@ public:
     ~Cconfiguration();
     int parse(std::vector<Chost*> & hosts);
 private:
+    void parseHost(std::vector<Chost*> & hosts, TiXmlElement * xmlhost);
+    Acommand * parseGetCommand(Aservice * service, TiXmlElement * xmlservice);
     TiXmlDocument _cfgxml;
 };
 

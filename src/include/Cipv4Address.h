@@ -1,18 +1,17 @@
 /* $Id$
- * $Version: 7.4.0$
- * $Revision: 14$
+ * $Version: 0.8$
+ * $Revision: 15$
  */
 /**
- * Project InterMon $Version: 0.7.4
+ * Project InterMon $Version: 0.8
  */
 
 #pragma once
 #ifndef _CIPV4ADDRESS_H
 #define _CIPV4ADDRESS_H
 
-#include "InterMon.h"
+#include <string>
 #include "CipAddress.h"
-
 
 class Cipv4Address: public CipAddress {
 public: 

@@ -1,9 +1,9 @@
 /* $Id$
- * $Version: 7.4.0$
- * $Revision: 11$
+ * $Version: 0.8$
+ * $Revision: 12$
  */
 /**
- * Project InterMon $Version: 0.7.4
+ * Project InterMon $Version: 0.8
  */
 
 #pragma once
@@ -11,7 +11,6 @@
 #define _BACKUPDB_H
 
 #include "sqlite_modern_cpp.h"
-
 
 namespace sqlite {
     class database;

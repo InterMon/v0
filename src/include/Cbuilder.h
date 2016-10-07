@@ -1,26 +1,32 @@
 /* $Id$
- * $Version: 7.4.0$
- * $Revision: 6$
+ * $Version: 0.8$
+ * $Revision: 7$
  */
 /**
- * Project InterMon $Version: 0.7.4
+ * Project InterMon $Version: 0.8
  */
 
 #pragma once
 #ifndef CBUILDER_H
 #define CBUILDER_H
+
 #include "Abuilder.h"
 #include "Aservice.h"
-#include "CctreatorServiceICMP.h"
 #include "tinyxml.h"
 #include <string>
+#include <stdexcept>
 
 /**
-  * class Cbuilder
-  * 
+  * class: Cbuilder
+  * title: Сoncrete builder
+  * goals: Implement Design Patterns: Bulder
+  *
+  * Concrete class implementing the Abuilder interface.
+  * Instance of Concrete class is built using data from xml.
+  * Then create a Chost class having Array(std::vector) of service instances.
+  * Method getResult produce desired product of instance Chost.
+  * Method buildPart prepare specific service for desired host.
   */
-
-const std::string cAttrName = "name";
 
 class Cbuilder : public Abuilder {
 public:
@@ -40,12 +46,12 @@ public:
     /**
      * @return Aservice *
      */
-    Aservice * buildPart(TiXmlElement * xmle);
+    Aservice * buildPart(TiXmlElement * xmle) throw(std::bad_alloc);
 
     /**
      * @return Chost *
      */
-    Chost * getResult();
+    Chost * getResult() throw(std::bad_alloc);
 
     // Private attribute accessor methods
 private:

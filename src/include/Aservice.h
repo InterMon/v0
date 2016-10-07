@@ -1,21 +1,21 @@
 /* $Id$
- * $Version: 7.4.0$
- * $Revision: 16$
+ * $Version: 0.8$
+ * $Revision: 17$
  */
 /**
- * Project InterMon $Version: 0.7.4
+ * Project InterMon $Version: 0.8
  */
 
 #pragma once
 #ifndef _CSERVICE_H
 #define _CSERVICE_H
 
-#include "InterMon.h"
 #include "Acheck.h"
+#include "Acommand.h"
 #include "Cnotification.h"
 
 class Aservice: public Acheck, public Cnotification {
-public: 
+public:
     /* */
     Aservice() { /* empty */ };
     /* */
@@ -24,7 +24,9 @@ public:
     virtual void checkCommand() = 0;
     /* */
     virtual void notifyCommand() = 0;
-protected: 
+    /* */
+    virtual Acommand * getCheckCommand() = 0;
+protected:
     std::string _description;
 };
 

@@ -1,9 +1,9 @@
 /* $Id$
- * $Version: 7.4.0$
- * $Revision: 3$
+ * $Version: 0.8$
+ * $Revision: 4$
  */
 /**
- * Project InterMon $Version: 0.7.4
+ * Project InterMon $Version: 0.8
  */
 
 #pragma once
@@ -15,6 +15,8 @@
 
 /**
   * class Acommand
+  * title Abstract command
+  * goals Implement Design Patterns: Command
   */
 
 class Acommand {
@@ -24,6 +26,7 @@ public:
 
   virtual void execute() = 0;
 };
+
 
 #endif // ACOMMAND_H
 

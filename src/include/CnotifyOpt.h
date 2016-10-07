@@ -1,16 +1,15 @@
 /* $Id$
- * $Version: 7.4.0$
- * $Revision: 14$
+ * $Version: 0.8$
+ * $Revision: 15$
  */
 /**
- * Project InterMon $Version: 0.7.4
+ * Project InterMon $Version: 0.8
  */
 
 #pragma once
 #ifndef _CNOTYFOPT_H
 #define _CNOTYFOPT_H
 
-#include "InterMon.h"
 #include "Cbasic.h"
 #include "notify_t.h"
 

@@ -1,9 +1,9 @@
 /* $Id$
- * $Version: 7.3.0$
- * $Revision: 11$
+ * $Version: 0.8$
+ * $Revision: 12$
  */
 /**
- * Project InterMon v0.7.3
+ * Project InterMon $Version: 0.8
  */
 
 #include "CipAddress.h"
@@ -14,11 +14,13 @@ CipAddress::CipAddress() { /* empty */ }
 CipAddress::~CipAddress() { /* empty */ }
 
 
-Cipv4Address::Cipv4Address() {
+Cipv4Address::Cipv4Address()
+{
     // TODO
 }
 
-Cipv4Address::~Cipv4Address() {
+Cipv4Address::~Cipv4Address()
+{
     // TODO
 }
 
@@ -26,7 +28,9 @@ Cipv4Address::~Cipv4Address() {
  * @param string
  * @return char[]
  */
-char* Cipv4Address::convFromStr(std::string s) {
+char* 
+Cipv4Address::convFromStr(std::string s)
+{
     // TODO
     return nullptr;
 }
@@ -35,7 +39,9 @@ char* Cipv4Address::convFromStr(std::string s) {
  * @param char[4]
  * @return string
  */
-std::string Cipv4Address::convToStr(char* s) {
+std::string
+Cipv4Address::convToStr(char* s)
+{
     // TODO
     return "";
 }
