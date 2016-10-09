@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 0.8$
- * $Revision: 17$
+ * $Revision: 21$
  */
 /**
  * Project InterMon $Version: 0.8
@@ -15,19 +15,29 @@
 #include "Cnotification.h"
 
 class Aservice: public Acheck, public Cnotification {
+protected:
+    std::string _description;
 public:
     /* */
     Aservice() { /* empty */ };
     /* */
-    virtual ~Aservice() { /* empty */ };
+    Aservice(std::string desc)
+    : _description(desc) { /* empty */ };
+    /* */
+    virtual const std::string & getDescription() const {
+        return _description;
+    }
     /* */
     virtual void checkCommand() = 0;
     /* */
     virtual void notifyCommand() = 0;
     /* */
     virtual Acommand * getCheckCommand() = 0;
-protected:
-    std::string _description;
+
+    /**
+     * Empty Destructor
+     */
+    virtual ~Aservice() { /* empty */ };
 };
 
 #endif //_CSERVICE_H

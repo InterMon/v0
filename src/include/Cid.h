@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 0.8$
- * $Revision: 16$
+ * $Revision: 19$
  */
 /**
  * Project InterMon $Version: 0.8
@@ -13,8 +13,22 @@
 #include "Cbasic.h"
 
 class Cid: public Cbasic {
-public: 
-    int id;
+    static long long seq;
+    Cid(long long i) : id(i) { /* Empty */ }
+public:
+    const long long id;
+    Cid();
+    Cid(const Cid & other);
+    Cid & operator=(const Cid & other);
+    Cid(const Cid && other);
+    Cid & operator=(const Cid && right);
+
+    /**
+     * Destructor
+     */
+    ~Cid();
+protected:
+    void move(const Cid && right);
 };
 
 #endif //_CID_H

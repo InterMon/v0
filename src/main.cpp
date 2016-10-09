@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 0.8$
- * $Revision: 16$
+ * $Revision: 20$
  */
 /**
  * Project InterMon $Version: 0.8
@@ -14,38 +14,31 @@
 using namespace std;
 
 #if defined(__TEST_DEVELOPING__)
+# include <functional>
 # include "Acommand.h"
 # include "Ccommand.h"
 # include "CserviceICMP.h"
+# include "Cjob.h"
+ extern "C" {
+# include "cpue.h"
+ }
 # define DEBUG 1
 # include "mydebug.hpp"
 
-class Cjob : public Cname {
-public:
-    Cjob() 
-    { /* empty */
-#if defined(DEBUG) && defined(PRINTM)
-        printd("Cjob constructor, this: ", this) << std::endl;
-#endif
-    }
-    Cjob(const Cjob & other)
-    { /* empty */
-#if defined(DEBUG) && defined(PRINTM)
-        printd("Cjob copy constructor, this: ", this);
-        printd("; &other: ", &other) << std::endl;
-#endif
-    }
-    Cjob & operator=(const Cjob & other)
-    {
-#if defined(DEBUG) && defined(PRINTM)
-        printd("Cjob  assignment operator this: ", this)
-            << "; &other: " << &other << std::endl;
-#endif
-        return *this;
-    }
-    ~Cjob()
-    { /* empty */ }
-};
+Cjob test(Cjob test) {
+    cout << "test.name = " << test.name << " test.id = " << test.id << endl;
+    test.name = "test";
+    return test;
+}
+
+void coutDeadline(const Cjob & j) {
+  time_t now = j.getDeadline();
+  struct tm * timeinfo;
+  timeinfo = localtime(&now);
+  cout << "j.name: " << j.name
+       << " j.getDeadline(): " << asctime(timeinfo)
+       << endl;
+}
 
 #endif
 
@@ -57,27 +50,9 @@ int main(int argc, char *argv[])
     printd("argc: ", argc, "; argv: ", argv) << endl;
 #endif
 #if defined(__TEST_DEVELOPING__)
-
-    Cjob job1;
-
-    cout << "job1.name = " << job1.name << endl;
-    job1.name = "job1";
-    cout << "job1.name = " << job1.name << endl;
-    Cjob job2;
-    job2 = job1;
-
-    CserviceICMP * srv = new CserviceICMP;
-    Acommand * cmd = srv->getCheckCommand();
-
-    cmd->execute();
-
-    delete cmd;
-    delete srv;
-
-    /*
     CmainServer mainServer("test.xml");
     mainServer.init();
-    mainServer.run(); */
+    mainServer.run();
 #else
     CmainServer mainServer(charsTestConf);
     mainServer.init();

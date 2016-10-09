@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 0.8$
- * $Revision: 19$
+ * $Revision: 22$
  */
 /**
  * Project InterMon $Version: 0.8
@@ -11,12 +11,17 @@
 
 using namespace std;
 
-typedef vector<Aservice*>::iterator sIter;
+typedef vector<Acommand*>::iterator cIter;
 
 Chost::~Chost()
 {
-    for (sIter i = _services.begin(); i != _services.end(); ++i) {
-        delete *i;
+    CservicesIterator services = getServicesIterator();
+    while (services.hasNext()) {
+        delete services.next();
+    }
+    for (cIter iCmd = _commands.begin(); iCmd != _commands.end(); ++iCmd) {
+        Acommand * ptrCommand = *iCmd;
+        delete ptrCommand;
     }
 }
 
@@ -37,8 +42,9 @@ Chost::checkCommand()
 void
 Chost::checkServices()
 {
-    for (sIter i = _services.begin(); i != _services.end(); ++i) {
-        (*i)->checkCommand();
+    CservicesIterator services = getServicesIterator();
+    while (services.hasNext()) {
+        services.next()->checkCommand();
     }
 }
 
@@ -51,11 +57,21 @@ Chost::notifyCommand()
 void
 Chost::addService(Aservice * service)
 {
+    if (nullptr == service) return;
 #if defined(DEBUG) && defined(PRINTM)
     printd("add service!") << endl;
 #endif
-    if (nullptr == service) return;
     _services.push_back(service);
+}
+
+void
+Chost::AddCommand(Acommand * command)
+{
+    if (nullptr == command) return;
+#if defined(DEBUG) && defined(PRINTM)
+    printd("add service!") << endl;
+#endif
+    _commands.push_back(command);
 }
 
 /* vim: syntax=cpp:fileencoding=utf-8:fileformat=unix:tw=78:ts=4:sw=4:sts=4:et

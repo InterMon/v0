@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 0.8$
- * $Revision: 7$
+ * $Revision: 12$
  */
 /**
  * Project InterMon $Version: 0.8
@@ -29,8 +29,12 @@
   */
 
 class Cbuilder : public Abuilder {
+private:
+    TiXmlElement * _xml;
 public:
-    // Remove Empty Constructor
+    /**
+     * No default Constructor
+     */
     Cbuilder() = delete;
 
     /**
@@ -38,10 +42,16 @@ public:
      * @param xml - Pointer to XML Element
      */
     Cbuilder(TiXmlElement * xml)
-    : _xml(xml) { }
+    : _xml(xml) { /* Empty*/ }
 
-    // Destructor
-    virtual ~Cbuilder() { /* Empty */ }
+    // Copy Constructor no copy!
+    Cbuilder(const Cbuilder & other)
+    : _xml(nullptr) { /* Empty */ }
+
+    Cbuilder & operator=(const Cbuilder & other) {
+        _xml = nullptr;
+        return *this;
+    }
 
     /**
      * @return Aservice *
@@ -53,9 +63,10 @@ public:
      */
     Chost * getResult() throw(std::bad_alloc);
 
-    // Private attribute accessor methods
-private:
-    TiXmlElement * _xml;
+    /**
+     * Empty Destructor
+     */
+    virtual ~Cbuilder() { /* Empty */ }
 };
 
 #endif // CBUILDER_H

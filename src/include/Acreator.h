@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 0.8$
- * $Revision: 8$
+ * $Revision: 10$
  */
 /**
  * Project InterMon $Version: 0.8
@@ -20,20 +20,23 @@
 
 class Acreator {
 public:
-  // Constructors
-  Acreator() = default;
-  /**
-   * @param xml - Pointer to XML Element
-   */
-  Acreator(TiXmlElement * xml) { /* Empty */ }
+    // Constructors
+    Acreator() = default;
 
-  // Destructor
-  virtual ~Acreator() { /* Empty */ }
+    /**
+     * @param xml - Pointer to XML Element
+     */
+    Acreator(TiXmlElement * xml) { /* Empty */ }
 
-  /**
-   * @return pointer to Aservice 
-   */
-  virtual Aservice * factoryMethod() = 0;
+    /**
+     * @return pointer to Aservice
+     */
+    virtual Aservice * factoryMethod() = 0;
+
+    /**
+     * Empty Destructor
+     */
+    virtual ~Acreator() { /* Empty */ }
 };
 
 #endif // ACREATOR_H

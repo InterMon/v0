@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 0.8$
- * $Revision: 15$
+ * $Revision: 17$
  */
 /**
  * Project InterMon $Version: 0.8
@@ -14,10 +14,13 @@
 #include "period_t.h"
 
 class Cperiod: public Cbasic {
-public: 
+public:
     /* */
     Cperiod();
-    /* */
+
+    /**
+     * Destructor
+     */
     ~Cperiod();
 protected:
     period_t _period;

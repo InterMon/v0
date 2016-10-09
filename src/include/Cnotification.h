@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 0.8$
- * $Revision: 15$
+ * $Revision: 17$
  */
 /**
  * Project InterMon $Version: 0.8
@@ -17,14 +17,17 @@
 #include "CcontactGroup.h"
 
 class Cnotification: public Cbasic {
-public: 
+public:
     /* */
     Cnotification();
     /* */
-    virtual ~Cnotification();
-    /* */
     virtual void notifyCommand() = 0;
-protected: 
+
+    /**
+     * Destructor
+     */
+    ~Cnotification();
+protected:
     Cperiod                    _notificationPeriod;
     int                        _notificationInterval = 30;
     CnotyfOpt                  _notificationOptions;

@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 0.8$
- * $Revision: 4$
+ * $Revision: 8$
  */
 /**
  * Project InterMon $Version: 0.8
@@ -13,6 +13,8 @@
 #include <string>
 #include <vector>
 
+class Aservice;
+
 /**
   * class Acommand
   * title Abstract command
@@ -21,12 +23,14 @@
 
 class Acommand {
 public:
-  /// Empty Destructor
-  virtual ~Acommand() { /* Empty */ }
+    virtual void execute() = 0;
+    virtual Aservice * getReceiver() const = 0;
 
-  virtual void execute() = 0;
+    /**
+     * Empty Destructor
+     */
+    virtual ~Acommand() { /* Empty */ }
 };
-
 
 #endif // ACOMMAND_H
 

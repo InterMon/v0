@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 0.8$
- * $Revision: 13$
+ * $Revision: 15$
  */
 /**
  * Project InterMon $Version: 0.8
@@ -19,14 +19,20 @@ class CserviceSNMPGet: public Aservice {
 public:
     /* */
     CserviceSNMPGet();
-    /* */
-    ~CserviceSNMPGet();
+
     /* */
     void checkCommand();
+
     /* */
     void notifyCommand();
+
     /* */
     Acommand * getCheckCommand() throw(std::bad_alloc);
+
+    /**
+     * Destructor
+     */
+    ~CserviceSNMPGet();
 protected:
     std::string _community;
 };
