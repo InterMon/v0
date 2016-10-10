@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 0.8$
- * $Revision: 12$
+ * $Revision: 15$
  */
 /**
  * Project InterMon $Version: 0.8
@@ -15,6 +15,7 @@ CipAddress::~CipAddress() { /* empty */ }
 
 
 Cipv4Address::Cipv4Address()
+: _octets{0}
 {
     // TODO
 }

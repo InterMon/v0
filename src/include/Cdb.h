@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 0.8$
- * $Revision: 23$
+ * $Revision: 28$
  */
 /**
  * Project InterMon $Version: 0.8
@@ -16,11 +16,11 @@
 #include "sqlite_modern_cpp.h"
 
 class Cdb: public Cbasic {
+private:
+    sqlite::database _db = {":memory:"};
 public: 
     /* */
     Cdb();
-    /* */
-    ~Cdb();
     /* */
     void backup(const std::string & name = "sqlite3.db")
         throw(std::runtime_error);
@@ -30,8 +30,9 @@ public:
     int getHostStatus(const std::string & name);
     /* */
     void setHostStatus(const std::string & name, int status);
-private: 
-    sqlite::database _db = {":memory:"};
+
+    /* */
+    ~Cdb();
 };
 
 extern Cdb mdb;

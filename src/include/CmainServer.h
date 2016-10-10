@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 0.8$
- * $Revision: 15$
+ * $Revision: 23$
  */
 /**
  * Project InterMon $Version: 0.8
@@ -13,17 +13,20 @@
 #include <string>
 #include <thread>
 #include "Cconfiguration.h"
-#include "Cname.h"
+#include "Sname.h"
 #include "Chost.h"
+#include "Cpool.h"
 
-class CmainServer: public Cname {
+#define MY_CPU_COUNT 2
+#define __TEST_DEVELOPING__ true
+
+class CmainServer: public Sname {
 public: 
     /* */
     CmainServer();
     /* */
     CmainServer(const std::string & configFile);
-    /* */
-    ~CmainServer();
+
     /* */
     void init();
     /* */
@@ -32,11 +35,16 @@ public:
     void run();
     /* */
     void eventLoop(Chost & host);
-private: 
+
+    /**
+     * Destructor
+     */
+    ~CmainServer();
+private:
     Cconfiguration            _conf;
     std::string               _ipAddress;
     std::vector<Chost*>       _hosts;
-    std::vector<std::thread*> _threads;
+    std::vector<Cpool>        _pools;
     friend void eventLoop0(Chost *);
 };
 

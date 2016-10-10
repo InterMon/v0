@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 0.8$
- * $Revision: 15$
+ * $Revision: 21$
  */
 /**
  * Project InterMon $Version: 0.8
@@ -12,18 +12,22 @@
 
 #include <string>
 #include <vector>
-#include "Cname.h"
+#include "Sname.h"
 
-class CcontactGroup: private Cname {
-public: 
-    /* */
-    CcontactGroup();
-    /* */
-    ~CcontactGroup();
-    /* */
-    void notifyMethod();
+class CcontactGroup: private Sname {
 private:
     std::vector<std::string> _persons;
+public:
+    /* */
+    CcontactGroup();
+
+    /* */
+    void notifyMethod();
+
+    /**
+     * Empty Destructor
+     */
+    ~CcontactGroup();
 };
 
 #endif //_CCONTACTGROUP_H

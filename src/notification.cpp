@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 0.8$
- * $Revision: 10$
+ * $Revision: 13$
  */
 /**
  * Project InterMon $Version: 0.8
@@ -27,6 +27,7 @@ CcontactGroup::notifyMethod()
 }
 
 CnotyfOpt::CnotyfOpt()
+: _opt(down)
 {
     // TODO
 }

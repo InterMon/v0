@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 0.8$
- * $Revision: 15$
+ * $Revision: 18$
  */
 /**
  * Project InterMon $Version: 0.8
@@ -17,8 +17,7 @@ class Cipv4Address: public CipAddress {
 public: 
     /* */
     Cipv4Address();
-    /* */
-    ~Cipv4Address();
+
     /* */
     /**
      * @param string
@@ -29,7 +28,12 @@ public:
      * @param char[4]
      */
     std::string convToStr(char*);
-protected: 
+
+    /**
+     * Empty Destructor
+     */
+    ~Cipv4Address();
+protected:
     char _octets[4];
 };
 

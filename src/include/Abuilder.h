@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 0.8$
- * $Revision: 8$
+ * $Revision: 11$
  */
 /**
  * Project InterMon $Version: 0.8
@@ -22,18 +22,15 @@
 
 class Abuilder {
 public:
-    /// Constructors
+    /**
+     * Empty default Constructor
+     */
     Abuilder() = default;
+
     /**
      * @param  xml
      */
     Abuilder(TiXmlElement * xml) { /* Empty */ }
-
-
-    /**
-     * Empty Destructor
-     */
-    virtual ~Abuilder() { /* Empty */ }
 
     /**
      * @return Aservice *
@@ -44,6 +41,11 @@ public:
      * @return Chost *
      */
     virtual Chost * getResult() = 0;
+
+    /**
+     * Empty Destructor
+     */
+    virtual ~Abuilder() { /* Empty */ }
 };
 
 #endif // ABUILDER_H

@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 0.8$
- * $Revision: 16$
+ * $Revision: 21$
  */
 /**
  * Project InterMon $Version: 0.8
@@ -13,18 +13,40 @@
 #include "Cbasic.h"
 #include "Cperiod.h"
 
+/**
+  * class Acheck
+  * title Abstract check
+  * goals Describe interface
+  */
+
 class Acheck: public Cbasic {
-public:
-    Acheck() { /* Empty */ }
-    virtual ~Acheck() { /* Empty */ }
-    virtual void checkCommand() = 0;
-    virtual int getCheckInterval() { return _normalCheckInterval; }
 protected:
     int     _state = 0;
     Cperiod _checkPeriod;
     int     _normalCheckInterval = 5;
     int     _maxCheckAttempts = 2;
     int     _retryInterval = 2;
+public:
+    /**
+     * Empty Constructor
+     */
+    Acheck() { /* Empty */ }
+
+    /**
+     * Method of interface use for check a commad.
+     */
+    virtual void checkCommand() = 0;
+
+    /**
+     * Method of interface return normal check interval in minutes.
+     * @return int
+     */
+    virtual int getCheckInterval() { return _normalCheckInterval; }
+
+    /**
+     * Empty Destructor
+     */
+    virtual ~Acheck() { /* Empty */ }
 };
 
 #endif //_CCHECK_H

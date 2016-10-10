@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 0.8$
- * $Revision: 15$
+ * $Revision: 20$
  */
 /**
  * Project InterMon $Version: 0.8
@@ -12,11 +12,6 @@
 #include "Cdb.h"
 #include "Cconfiguration.h"
 #include "strs.h"
-
-Cconfiguration::Cconfiguration(const std::string & s)
-: _cfgxml(s.c_str()) { /* Empty */ }
-
-Cconfiguration::~Cconfiguration() { /* Empty */ }
 
 Acommand *
 Cconfiguration::parseGetCommand(Aservice * service, TiXmlElement * xmlservice)
@@ -40,7 +35,7 @@ try {
             host->addService(service);
             Acommand * cmd = parseGetCommand(service, xmlservice);
             if (nullptr != cmd) {
-                // host->AddCommand(cmd);
+                host->AddCommand(cmd);
             }
             xmlservice = xmlservice->NextSiblingElement(chost);
         }

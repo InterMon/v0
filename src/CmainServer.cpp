@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 0.8$
- * $Revision: 19$
+ * $Revision: 26$
  */
 /**
  * Project InterMon $Version: 0.8
@@ -9,20 +9,23 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <utility>
 extern "C" {
 #include "cpue.h"
 }
 #include "Cdb.h"
 #include "Acommand.h"
 #include "Ccommand.h"
+#include "Cjob.h"
+#include "Cpool.h"
 #include "CmainServer.h"
+#include "InterMon.h"
 #include "strs.h"
 
 using namespace std;
 
 typedef vector<Chost*>::iterator hIter;
-typedef vector<string>::const_iterator cIter;
-typedef vector<thread*>::iterator tIter;
+typedef vector<Cpool>::iterator pIter;
 
 CmainServer::CmainServer()
 : _conf(defaultConfigFile), _ipAddress(localhost)
@@ -34,11 +37,13 @@ CmainServer::CmainServer(const std::string & configFile)
 
 CmainServer::~CmainServer()
 {
-    for (tIter i = _threads.begin(); i != _threads.end(); ++i) {
-        delete *i;
+    for (pIter itr = _pools.begin(); itr != _pools.end(); ++itr) {
+        Cpool & pool = *itr;
+        pool.~Cpool();
     }
-    for (hIter i = _hosts.begin(); i != _hosts.end(); ++i) {
-        delete *i;
+    for (hIter itr = _hosts.begin(); itr != _hosts.end(); ++itr) {
+        Chost * ptrHost = *itr;
+        delete ptrHost;
     }
 }
 
@@ -46,21 +51,11 @@ void
 CmainServer::init()
 {
     readConf();
-    for (size_t i = 0; i < _hosts.size(); ++i) {
-        cerr << "Hostname: "
-             << _hosts[i]->getHostname()
-             << "&_host[" << i << "]: "
-             << &_hosts[i]
-             << endl;
-        Chost * host = _hosts[i];
-        cerr << "cmd done" << endl;
-    }
 }
 
 void
 eventLoop0(Chost * host)
 {
-    Acommand * cmd = new Ccommand<Chost>(host, &Chost::checkCommand);
     while (true) {
         const string & hostName = host->getHostname();
         mdb.setHostStatus(hostName, 1);
@@ -69,20 +64,43 @@ eventLoop0(Chost * host)
              << hostName << ", "
              << mdb.getHostStatus(hostName)
              << ")" << endl;
-        cmd->execute();
+        // cmd->execute();
         myusleep(host->getCheckInterval()*MYUSLEEP_1SEC/2);
         cerr << "getHostStatus("
              << hostName << ") => "
              << mdb.getHostStatus(hostName)
              << endl;
     }
-    delete cmd;
 }
 
 void
-eventLoop1(Chost * host)
+eventLoop1(Cpool * pool)
 {
-    while (true) {
+#if defined(__TEST_DEVELOPING__)
+    int testCount = 9;
+#endif
+    myusleep(2*MYUSLEEP_1SEC);
+    while (not pool->isJobsEmpty()) {
+        cout << "top" << endl;
+        const Cjob & jobTop = pool->topOfJobs();
+        cout << "jobTop.service() = " << jobTop.service()
+            << " jobTop.command() = " << jobTop.command() << endl;
+        if (!jobTop.isServiceNull() and !jobTop.isCommandNull()) {
+            std::cout << "Q.top: jobTop.name = " << jobTop.name
+                      <<       " jobTop.id = " << jobTop.id << std::endl;
+            cout << "pop" << endl;
+            Cjob job = std::move(pool->popJob());
+#if defined(__TEST_DEVELOPING__)
+            if (0 < testCount) {
+                cout << "push " << testCount << endl;
+                pool->pushJob(std::move(job));
+                testCount--;
+            }
+#endif
+        }
+        myusleep(2*MYUSLEEP_1SEC/3);
+        cout << boolalpha;
+        cout << "pool->isJobsEmpty(): " << pool->isJobsEmpty() << endl;
     }
 }
 
@@ -91,10 +109,47 @@ CmainServer::run()
 {
     for (hIter i = _hosts.begin(); i != _hosts.end(); ++i) {
         Chost * host = *i;
-        _threads.push_back(new thread(eventLoop0, host));
         myusleep(MYUSLEEP_1SEC/2);
+        cout << "hostname: " << host->getHostname() << endl;
+        Chost::CservicesIterator services = host->getServicesIterator();
+        while (services.hasNext()) {
+            Aservice * service = services.next();
+            cout << " servicename: " << service->getDescription() << endl;
+        }
     }
-    while (true) {
+    for (int i = 0; i < MY_CPU_COUNT; ++i) {
+        Cpool pool;
+        pool.name = std::string("Pool N ") + std::to_string(i);
+        _pools.push_back(std::move(pool));
+    }
+    int i = 0;
+    for (hIter itr = _hosts.begin(); itr != _hosts.end(); ++itr, ++i) {
+        Chost * host = *itr;
+        Cpool & pool = _pools[i % MY_CPU_COUNT];
+        pool.addHost(host);
+        cout << "hostname: " << host->getHostname()
+             << " added to " << pool.name
+             << endl;
+        Chost::CcommandsIterator commands = host->getCommandsIterator();
+        while (commands.hasNext()) {
+            Acommand * command = commands.next();
+            Aservice * service = command->getReceiver();
+            cout << " command of service: " << service->getDescription()
+                 << " added to " << pool.name
+                 << endl;
+                Cjob job(service, command);
+                job.name = service->getDescription();
+                pool.pushJob(std::move(job));
+        }
+    }
+    myusleep(MYUSLEEP_1SEC/2);
+    for (pIter itr = _pools.begin(); itr != _pools.end(); ++itr) {
+        Cpool & pool = *itr;
+        pool.newThread(new thread(eventLoop1, &pool));
+        myusleep(3*MYUSLEEP_1SEC/4);
+    }
+    bool isAllPollsEmpry = false;
+    while (not isAllPollsEmpry) {
 #if defined(DEBUG) && defined(PRINTM)
         printd("run sleep!") << endl;
 #endif
@@ -110,6 +165,16 @@ CmainServer::run()
             printd("Error: ", e.what()) << endl;
 #endif
         }
+        myusleep(6*MYUSLEEP_1SEC);
+        isAllPollsEmpry = true;
+        for (pIter itr = _pools.begin(); itr != _pools.end(); ++itr) {
+           Cpool & pool = *itr;
+           isAllPollsEmpry = isAllPollsEmpry && pool.isJobsEmpty();
+        }
+    }
+    for (pIter itr = _pools.begin(); itr != _pools.end(); ++itr) {
+        Cpool & pool = *itr;
+        pool.threadJoin();
     }
 }
 

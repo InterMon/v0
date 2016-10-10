@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 0.8$
- * $Revision: 12$
+ * $Revision: 15$
  */
 /**
  * Project InterMon $Version: 0.8
@@ -9,6 +9,7 @@
 #include "Cperiod.h"
 
 Cperiod::Cperiod()
+: _period{0}
 {
     // TODO
 }

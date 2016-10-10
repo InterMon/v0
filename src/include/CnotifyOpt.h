@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 0.8$
- * $Revision: 15$
+ * $Revision: 18$
  */
 /**
  * Project InterMon $Version: 0.8
@@ -14,12 +14,15 @@
 #include "notify_t.h"
 
 class CnotyfOpt: public Cbasic {
-public: 
+public:
     /* */
     CnotyfOpt();
-    /* */
+
+    /**
+     * Destructor
+     */
     ~CnotyfOpt();
-private: 
+private:
     notify_t _opt;
 };
 

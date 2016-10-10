@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 0.8$
- * $Revision: 15$
+ * $Revision: 22$
  */
 /**
  * Project InterMon $Version: 0.8
@@ -13,7 +13,7 @@
 #include <string>
 #include "tinyxml.h"
 #include "Chost.h"
-#include "Cname.h"
+#include "Sname.h"
 #include "Acommand.h"
 #include "strs.h"
 
@@ -28,15 +28,22 @@
   * Method read in all host configuration data from xmlhost.
   */
 
-class Cconfiguration: public Cname {
+class Cconfiguration: public Sname {
+private:
+    TiXmlDocument _cfgxml;
 public:
-    Cconfiguration(const std::string & s = devNull);
-    ~Cconfiguration();
+    Cconfiguration(const std::string & s = devNull)
+    : _cfgxml(s.c_str()) { /* Empty */ }
+
     int parse(std::vector<Chost*> & hosts);
+
+    /**
+     * Empty Destructor
+     */
+    ~Cconfiguration() { /* Empty */ }
 private:
     void parseHost(std::vector<Chost*> & hosts, TiXmlElement * xmlhost);
     Acommand * parseGetCommand(Aservice * service, TiXmlElement * xmlservice);
-    TiXmlDocument _cfgxml;
 };
 
 #endif //_CCONFIGURATION_H

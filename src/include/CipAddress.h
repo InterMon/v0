@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 0.8$
- * $Revision: 15$
+ * $Revision: 18$
  */
 /**
  * Project InterMon $Version: 0.8
@@ -14,8 +14,11 @@ class CipAddress {
 public: 
     /* */
     CipAddress();
-    /* */
-    ~CipAddress();
+
+    /**
+     * Destructor
+     */
+    virtual ~CipAddress();
 };
 
 #endif //_CIPADDRESS_H

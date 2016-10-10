@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 0.8$
- * $Revision: 13$
+ * $Revision: 19$
  */
 /**
  * Project InterMon $Version: 0.8
@@ -23,21 +23,32 @@
 class CserviceICMP: public Aservice {
 public:
     /* */
-    CserviceICMP();
+    CserviceICMP() = delete;
+    CserviceICMP(std::string description);
+    // Copy Constructor
+    CserviceICMP(const CserviceICMP & );
     /* */
-    ~CserviceICMP();
+    CserviceICMP & operator=(const CserviceICMP & );
     /* */
     void checkCommand();
     /* */
     void notifyCommand();
     /* */
     Acommand * getCheckCommand() throw(std::bad_alloc);
+
+    /**
+     * Destructor
+     */
+    ~CserviceICMP();
 private:
     int _icmpType;
 };
 
 class CctreatorServiceICMP : public Acreator {
 public:
+    // Remove Empty Constructor
+    CctreatorServiceICMP() = delete;
+
     /**
      * Constructor
      * @param xml - Pointer to XML Element
@@ -45,8 +56,14 @@ public:
     CctreatorServiceICMP(TiXmlElement * xml)
     : _xml(xml) { /* Empty */ }
 
-    // Destructor
-    virtual ~CctreatorServiceICMP() { /* Empty */ }
+    // Copy Constructor no copy!
+    CctreatorServiceICMP(const CctreatorServiceICMP & )
+    : _xml(nullptr) { /* Empty */ }
+
+    CctreatorServiceICMP & operator=(const CctreatorServiceICMP & ) {
+        _xml = nullptr;
+        return *this;
+    }
 
     /**
      * @return pointer to CserviceICMP
@@ -54,6 +71,10 @@ public:
      */
     Aservice * factoryMethod() throw(std::bad_alloc);
 
+    /**
+     * Empty Destructor
+     */
+    virtual ~CctreatorServiceICMP() { /* Empty */ }
 private:
     TiXmlElement * _xml;
 };

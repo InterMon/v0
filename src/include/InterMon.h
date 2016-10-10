@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 0.8$
- * $Revision: 12$
+ * $Revision: 15$
  */
 /**
  * Project InterMon $Version: 0.8
@@ -14,7 +14,7 @@
 #include <vector>
 #include <iostream>
 
-#define DEBUG 4
+// #define DEBUG 4
 
 #ifdef DEBUG
 # include "mydebug.hpp"

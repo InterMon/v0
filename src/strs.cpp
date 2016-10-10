@@ -1,11 +1,12 @@
 /* $Id$
  * $Version: 0.8$
- * $Revision: 19$
+ * $Revision: 22$
  */
 /**
  * Project InterMon $Version: 0.8
  */
 
+#include <ctime>
 #include <string>
 #include "strs.h"
 

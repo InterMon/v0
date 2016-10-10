@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 0.8$
- * $Revision: 15$
+ * $Revision: 21$
  */
 /**
  * Project InterMon $Version: 0.8
@@ -18,12 +18,32 @@ throw(std::bad_alloc)
   if (cAttrNameValue != name) return nullptr;
   const char * type = _xml->Attribute(cAttrType.c_str());
   // TODO convert "type" to an int and this value will be use as parameter for:
-  return new CserviceICMP();
+  return new CserviceICMP(name);
 }
 
-CserviceICMP::CserviceICMP()
+Acommand *
+CserviceICMP::getCheckCommand()
+throw(std::bad_alloc)
+{
+    return new Ccommand<CserviceICMP>(this, &CserviceICMP::checkCommand);
+}
+
+CserviceICMP::CserviceICMP(std::string description)
+: Aservice(description), _icmpType(8)
 {
     // TODO
+}
+
+CserviceICMP::CserviceICMP(const CserviceICMP & other)
+: Aservice(other), _icmpType(8)
+{
+    // TODO
+}
+
+CserviceICMP &
+CserviceICMP::operator=(const CserviceICMP & )
+{
+    return *this;
 }
 
 CserviceICMP::~CserviceICMP()
@@ -43,13 +63,6 @@ void
 CserviceICMP::notifyCommand()
 {
     // TODO
-}
-
-Acommand *
-CserviceICMP::getCheckCommand()
-throw(std::bad_alloc)
-{
-    return new Ccommand<CserviceICMP>(this, &CserviceICMP::checkCommand);
 }
 
 /* vim: syntax=cpp:fileencoding=utf-8:fileformat=unix:tw=78:ts=4:sw=4:sts=4:et

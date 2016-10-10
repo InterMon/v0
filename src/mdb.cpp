@@ -1,12 +1,14 @@
 /* $Id$
  * $Version: 0.8$
- * $Revision: 18$
+ * $Revision: 21$
  */
 /**
  * Project InterMon $Version: 0.8
  */
 
 #define _MODERN_SQLITE_BOOST_OPTIONAL_SUPPORT
+
+#include <iostream>
 #include "Cdb.h"
 #include "backupDb.h"
 

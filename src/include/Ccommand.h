@@ -1,6 +1,6 @@
 /* $Id$
  * $Version: 0.8$
- * $Revision: 4$
+ * $Revision: 10$
  */
 /**
  * Project InterMon $Version: 0.8
@@ -34,11 +34,6 @@ public:
     : _state(0), _action(a), _receiver(r)
     { /* Empty */ }
 
-    /**
-     * Destructor
-     */
-    virtual ~Ccommand() { /* Empty */ }
-
     void execute() {
         (_receiver->*_action)();
     }
@@ -59,6 +54,15 @@ public:
     int getState() {
       return _state;
     }
+
+    Aservice * getReceiver() const {
+        return _receiver;
+    }
+
+    /**
+     * Empty Destructor
+     */
+    virtual ~Ccommand() { /* Empty */ }
 private:
     // Private attributes
     int        _state;
@@ -70,4 +74,3 @@ private:
 
 /* vim: syntax=cpp:fileencoding=utf-8:fileformat=unix:tw=78:ts=4:sw=4:sts=4:et
  * EOF */
-

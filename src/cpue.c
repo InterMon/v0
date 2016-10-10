@@ -31,3 +31,7 @@ int set_nonblock(int fd) {
     return ioctl(fd, FIOBIO, &flags);
 #endif
 }
+
+static struct tm tmEpoch = {0};
+time_t epoch() { return mktime(&tmEpoch); }
+
