@@ -1,6 +1,10 @@
 /* $Id$
  * $Version: 0.8$
+<<<<<<< HEAD
  * $Revision: 21$
+=======
+ * $Revision: 19$
+>>>>>>> 11728d58400cb78f0f0e3cef88845c3333bf47e4
  */
 /**
  * Project InterMon $Version: 0.8
@@ -35,7 +39,10 @@ CserviceICMP::CserviceICMP(std::string description)
 }
 
 CserviceICMP::CserviceICMP(const CserviceICMP & other)
+<<<<<<< HEAD
 : Aservice(other), _icmpType(8)
+=======
+>>>>>>> 11728d58400cb78f0f0e3cef88845c3333bf47e4
 {
     // TODO
 }
