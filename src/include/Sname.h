@@ -1,10 +1,6 @@
 /* $Id$
  * $Version: 0.8$
-<<<<<<< HEAD
- * $Revision: 21$
-=======
  * $Revision: 20$
->>>>>>> 11728d58400cb78f0f0e3cef88845c3333bf47e4
  */
 /**
  * Project InterMon $Version: 0.8

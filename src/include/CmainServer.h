@@ -1,10 +1,6 @@
 /* $Id$
  * $Version: 0.8$
-<<<<<<< HEAD
- * $Revision: 23$
-=======
- * $Revision: 21$
->>>>>>> 11728d58400cb78f0f0e3cef88845c3333bf47e4
+ * $Revision: 22$
  */
 /**
  * Project InterMon $Version: 0.8
@@ -22,10 +18,7 @@
 #include "Cpool.h"
 
 #define MY_CPU_COUNT 2
-<<<<<<< HEAD
 #define __TEST_DEVELOPING__ true
-=======
->>>>>>> 11728d58400cb78f0f0e3cef88845c3333bf47e4
 
 class CmainServer: public Sname {
 public: 

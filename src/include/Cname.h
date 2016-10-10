@@ -1,23 +1,23 @@
 /* $Id$
  * $Version: 0.8$
- * $Revision: 14$
+ * $Revision: 16$
  */
 /**
  * Project InterMon $Version: 0.8
  */
 
-#include "Cperiod.h"
+#pragma once
+#ifndef _CNAME_H
+#define _CNAME_H
 
-Cperiod::Cperiod()
-: _period{0}
-{
-    // TODO
-}
+#include "Cid.h"
 
-Cperiod::~Cperiod()
-{
-    // TODO
-}
+class Cname: public Cid {
+public: 
+    std::string name;
+};
+
+#endif //_CNAME_H
 
 /* vim: syntax=cpp:fileencoding=utf-8:fileformat=unix:tw=78:ts=4:sw=4:sts=4:et
  * EOF */

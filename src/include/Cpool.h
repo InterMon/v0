@@ -1,10 +1,6 @@
 /* $Id$
  * $Version: 0.0$
-<<<<<<< HEAD
- * $Revision: 6$
-=======
- * $Revision: 4$
->>>>>>> 11728d58400cb78f0f0e3cef88845c3333bf47e4
+ * $Revision: 5$
  */
 /**
  * Project InterMon $Version: 0.0
@@ -51,13 +47,10 @@ public:
         _thread = thread;
     }
 
-<<<<<<< HEAD
     void threadJoin() {
         _thread->join();
     }
 
-=======
->>>>>>> 11728d58400cb78f0f0e3cef88845c3333bf47e4
     /* */
     friend class ChostsIterator;
 
